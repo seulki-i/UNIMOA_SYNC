@@ -1,0 +1,3 @@
+rootProject.name = 'UNIMOA_SYNC'
+include 'zeroize'
+
