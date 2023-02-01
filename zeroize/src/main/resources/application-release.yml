@@ -1,7 +1,7 @@
 spring:
   datasource:
     newauthdb: # 5.7
-      driver-class-name: com.mysql.jdbc.Driver
+      driver-class-name: com.mysql.cj.jdbc.Driver
       jdbc-url: jdbc:mysql://10.10.11.32:3306/newauthdb?serverTimezone=Asia/Seoul&useSSL=false&zeroDateTimeBehavior=convertToNull
       username: newgw
       password: pwnewgw
