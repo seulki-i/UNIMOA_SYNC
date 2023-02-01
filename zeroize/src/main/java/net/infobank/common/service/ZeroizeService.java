@@ -45,10 +45,10 @@ public class ZeroizeService {
         )));
 
         for (ZeroiseDTO dto : list) {
-            long between = ChronoUnit.MINUTES.between(LocalDateTime.now(), dto.getSendTime());
+            long between = ChronoUnit.MINUTES.between(dto.getSendTime(), LocalDateTime.now());
             String checkUpdate = "N";
 
-            if (between >= dto.getReset()) {
+            if (between >= dto.getReset()) { // 리셋시간(분)보다 더 지났다면
                 checkUpdate = "Y";
                 String updateQuery = "UPDATE alertinfo SET alert_sendcnt = 0 WHERE alertinfo_key = '" + dto.getKey() + "'";
 

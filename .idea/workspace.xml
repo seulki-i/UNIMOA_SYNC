@@ -6,11 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4e883ec2-b17f-45af-97af-124b262027d1" name="Changes" comment="zeroize">
       <change afterPath="$PROJECT_DIR$/tsInsert/src/main/java/net/infobank/tsInsertApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/zeroize/src/main/resources/application-local.yml" beforeDir="false" afterPath="$PROJECT_DIR$/zeroize/src/main/resources/application-local.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/zeroize/src/main/resources/application-release.yml" beforeDir="false" afterPath="$PROJECT_DIR$/zeroize/src/main/resources/application-release.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zeroize/src/main/java/net/infobank/common/service/ZeroizeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/zeroize/src/main/java/net/infobank/common/service/ZeroizeService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +121,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.UNIMOA_SYNC:zeroize [bootJar]">
+  <component name="RunManager" selected="Spring Boot.ZeroizeApplication">
     <configuration name="UNIMOA_SYNC:zeroize [bootJar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -178,7 +175,7 @@
       <workItem from="1674804658137" duration="68000" />
       <workItem from="1674804759111" duration="9000" />
       <workItem from="1674804781749" duration="2470000" />
-      <workItem from="1674807271252" duration="10630000" />
+      <workItem from="1674807271252" duration="11523000" />
     </task>
     <task id="LOCAL-00001" summary="zeroize">
       <created>1675068463240</created>
@@ -187,7 +184,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675068463240</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="zeroize yml 수정">
+      <created>1675237354782</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1675237354782</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -206,6 +210,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="zeroize" />
-    <option name="LAST_COMMIT_MESSAGE" value="zeroize" />
+    <MESSAGE value="zeroize yml 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="zeroize yml 수정" />
   </component>
 </project>
