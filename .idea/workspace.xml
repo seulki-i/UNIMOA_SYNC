@@ -5,9 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e883ec2-b17f-45af-97af-124b262027d1" name="Changes" comment="zeroize">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsInsert/src/main/java/net/infobank/common/CommandLineAppStartupRunner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsInsert/src/main/java/net/infobank/common/config/NewAuthDbDataSourceConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsInsert/src/main/java/net/infobank/common/dto/TsInfoDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsInsert/src/main/java/net/infobank/common/service/TsInsertService.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/tsInsert/src/main/java/net/infobank/tsInsertApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsInsert/src/main/resources/application-local.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsInsert/src/main/resources/application-release.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsInsert/src/main/resources/logback.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zeroize/src/main/java/net/infobank/common/dto/ZeroiseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/zeroize/src/main/java/net/infobank/common/dto/AlertInfoDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/zeroize/src/main/java/net/infobank/common/service/ZeroizeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/zeroize/src/main/java/net/infobank/common/service/ZeroizeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zeroize/src/main/resources/application-local.yml" beforeDir="false" afterPath="$PROJECT_DIR$/zeroize/src/main/resources/application-local.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +100,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "jdk.selected.JAVA_MODULE": "1.8",
-    "last_opened_file_path": "C:/PROJECT/UNIMOA_SYNC",
+    "last_opened_file_path": "C:/PROJECT/UNIMOA_SYNC/tsInsert/src/main/resources",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -106,12 +116,14 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\PROJECT\UNIMOA_SYNC\tsInsert\src\main\resources" />
       <recent name="C:\PROJECT\UNIMOA_SYNC\zeroize\src\main\resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="net.infobank" />
+      <recent name="net.infobank.common.dto" />
       <recent name="net.infobank.common.config" />
       <recent name="net.infobank.common" />
+      <recent name="net.infobank" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -121,7 +133,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.ZeroizeApplication">
+  <component name="RunManager" selected="Spring Boot.tsInsertApplication">
     <configuration name="UNIMOA_SYNC:zeroize [bootJar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -152,12 +164,18 @@
       </method>
     </configuration>
     <configuration name="tsInsertApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="ACTIVE_PROFILES" value="local" />
       <module name="UNIMOA_SYNC.tsInsert.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="net.infobank.tsInsertApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Gradle.UNIMOA_SYNC:zeroize [bootJar]" />
+      <item itemvalue="Spring Boot.tsInsertApplication" />
+      <item itemvalue="Spring Boot.ZeroizeApplication" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.UNIMOA_SYNC:zeroize [bootJar]" />
@@ -175,7 +193,7 @@
       <workItem from="1674804658137" duration="68000" />
       <workItem from="1674804759111" duration="9000" />
       <workItem from="1674804781749" duration="2470000" />
-      <workItem from="1674807271252" duration="11523000" />
+      <workItem from="1674807271252" duration="34546000" />
     </task>
     <task id="LOCAL-00001" summary="zeroize">
       <created>1675068463240</created>
@@ -191,7 +209,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675237354782</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="zeroize 시간계산 수정">
+      <created>1675238281674</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1675238281674</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -211,6 +236,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="zeroize" />
     <MESSAGE value="zeroize yml 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="zeroize yml 수정" />
+    <MESSAGE value="zeroize 시간계산 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="zeroize 시간계산 수정" />
   </component>
 </project>

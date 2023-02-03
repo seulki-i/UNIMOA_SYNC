@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @AllArgsConstructor
-public class ZeroiseDTO {
+public class AlertInfoDTO {
     private int key;
 
     private int reset;

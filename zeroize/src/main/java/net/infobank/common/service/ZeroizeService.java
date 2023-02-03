@@ -1,6 +1,6 @@
 package net.infobank.common.service;
 
-import net.infobank.common.dto.ZeroiseDTO;
+import net.infobank.common.dto.AlertInfoDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -37,14 +37,14 @@ public class ZeroizeService {
                 "SELECT alertinfo_key, alert_reset, alert_sendtime, alert_id " +
                         "FROM alertinfo WHERE alert_repeat <= alert_sendcnt AND alert_repeat != 0";
 
-        List<ZeroiseDTO> list = new ArrayList<>(newAuthDbJdbcTemplate.query(selectQuery, (rs, i) -> new ZeroiseDTO(
+        List<AlertInfoDTO> list = new ArrayList<>(newAuthDbJdbcTemplate.query(selectQuery, (rs, i) -> new AlertInfoDTO(
                 rs.getInt("alertinfo_key"),
                 rs.getInt("alert_reset"),
                 rs.getTimestamp("alert_sendtime").toLocalDateTime(),
                 rs.getString("alert_id")
         )));
 
-        for (ZeroiseDTO dto : list) {
+        for (AlertInfoDTO dto : list) {
             long between = ChronoUnit.MINUTES.between(dto.getSendTime(), LocalDateTime.now());
             String checkUpdate = "N";
 
