@@ -29,6 +29,10 @@ public class TsInsertService {
         this.newAuthDbJdbcTemplate = newAuthDbJdbcTemplate;
     }
 
+    /**
+     * tsinfo 테이블의 tscode값과 alertinfo 테이블의 fault_type값이 같은 경우가 없을때
+     * alertinfo, alert_recipient 테이블 insert, alertinfo 테이블 update
+     */
     public void InsertAlertInfoTsCode() {
         logger.info("start : tsCode");
         List<Integer> faultList = new ArrayList<>(); //1003_1
@@ -83,6 +87,10 @@ public class TsInsertService {
         logger.info("end : tsCode");
     }
 
+    /**
+     * tsinfo 테이블의 ts_id값과 alertinfo 테이블의 fault_type값이 같은 경우가 없을때
+     * alertinfo, alert_recipient 테이블 insert, alertinfo 테이블 update
+     */
     public void InsertAlertInfoTId() {
         logger.info("start : tsId");
         List<Integer> faultList = new ArrayList<>(); //1003_2
