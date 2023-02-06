@@ -3,6 +3,7 @@ package net.infobank.common.service;
 import net.infobank.common.dto.TsInfoDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -25,7 +26,7 @@ public class TsInsertService {
 
     private final JdbcTemplate newAuthDbJdbcTemplate;
 
-    public TsInsertService(JdbcTemplate newAuthDbJdbcTemplate) {
+    public TsInsertService(@Qualifier("newAuthDbJdbcTemplate") JdbcTemplate newAuthDbJdbcTemplate) {
         this.newAuthDbJdbcTemplate = newAuthDbJdbcTemplate;
     }
 

@@ -3,6 +3,7 @@ package net.infobank.common.service;
 import net.infobank.common.dto.AlertInfoDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,7 @@ public class ZeroizeService {
 
     private final JdbcTemplate newAuthDbJdbcTemplate;
 
-    public ZeroizeService(JdbcTemplate newAuthDbJdbcTemplate) {
+    public ZeroizeService(@Qualifier("newAuthDbJdbcTemplate")JdbcTemplate newAuthDbJdbcTemplate) {
         this.newAuthDbJdbcTemplate = newAuthDbJdbcTemplate;
     }
 
