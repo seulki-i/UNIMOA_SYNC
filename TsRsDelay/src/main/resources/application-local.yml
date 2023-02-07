@@ -1,0 +1,56 @@
+spring:
+  datasource:
+    newauthdb: # 5.7
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://172.16.0.140:3306/auth?serverTimezone=Asia/Seoul&useSSL=false
+      username: unimoa
+      password: pwunimoa
+    unirs1:
+      driver-class-name: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://172.16.0.140:3306/unirs?serverTimezone=Asia/Seoul&useSSL=false
+      username: unimoa
+      password: pwunimoa
+    unirs2:
+      driver-class-name: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://172.16.0.140:3306/unirs?serverTimezone=Asia/Seoul&useSSL=false
+      username: unimoa
+      password: pwunimoa
+    unirs3:
+      driver-class-name: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://172.16.0.140:3306/unirs?serverTimezone=Asia/Seoul&useSSL=false
+      username: unimoa
+      password: pwunimoa
+    unirs4:
+      driver-class-name: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://172.16.0.140:3306/unirs?serverTimezone=Asia/Seoul&useSSL=false
+      username: unimoa
+      password: pwunimoa
+    smrs:
+      driver-class-name: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://172.16.0.140:3306/smrs?serverTimezone=Asia/Seoul&useSSL=false
+      username: unimoa
+      password: pwunimoa
+    grs1:
+      driver-class-name: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://172.16.0.140:3306/wngrs?serverTimezone=Asia/Seoul&useSSL=false
+      username: unimoa
+      password: pwunimoa
+    grs2:
+      driver-class-name: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://172.16.0.140:3306/wngrs?serverTimezone=Asia/Seoul&useSSL=false
+      username: unimoa
+      password: pwunimoa
+    rcs1:
+      driver-class-name: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://172.16.0.140:3306/rcsrs?serverTimezone=Asia/Seoul&useSSL=false
+      username: unimoa
+      password: pwunimoa
+    rcs2:
+      driver-class-name: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://172.16.0.140:3306/rcsrs?serverTimezone=Asia/Seoul&useSSL=false
+      username: unimoa
+      password: pwunimoa
+server:
+  port: 19012
+#logging:
+#  config: classpath:logback.xml

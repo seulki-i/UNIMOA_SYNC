@@ -4,16 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e883ec2-b17f-45af-97af-124b262027d1" name="Changes" comment="zeroize">
-      <change afterPath="$PROJECT_DIR$/tsInsert/src/main/java/net/infobank/common/CommandLineAppStartupRunner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tsInsert/src/main/java/net/infobank/common/config/NewAuthDbDataSourceConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tsInsert/src/main/java/net/infobank/common/dto/TsInfoDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tsInsert/src/main/java/net/infobank/common/service/TsInsertService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tsInsert/src/main/java/net/infobank/tsInsertApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tsInsert/src/main/resources/application-local.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tsInsert/src/main/resources/application-release.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tsInsert/src/main/resources/logback.xml" afterDir="false" />
+    <list default="true" id="4e883ec2-b17f-45af-97af-124b262027d1" name="Changes" comment="tsInsert 서버포트 수정">
+      <change afterPath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/config/Grs1DataSourceConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/config/Grs2DataSourceConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/config/NewAuthDbDataSourceConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/config/Rcs1DataSourceConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/config/Rcs2DataSourceConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/config/UniRs1DataSourceConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/config/UniRs2DataSourceConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/config/UniRs3DataSourceConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/config/UniRs4DataSourceConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/dto/AlertInfoDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/dto/MessageDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/dto/RsCountDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/service/TsRsDelayService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/tsRsDelayApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TsRsDelay/src/main/resources/application-local.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TsRsDelay/src/main/resources/application-release.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TsRsDelay/src/main/resources/logback.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +107,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "jdk.selected.JAVA_MODULE": "1.8",
-    "last_opened_file_path": "C:/PROJECT/UNIMOA_SYNC/tsInsert/src/main/resources",
+    "last_opened_file_path": "C:/PROJECT/UNIMOA",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -112,14 +123,15 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\PROJECT\UNIMOA_SYNC\TsRsDelay\src\main\resources" />
       <recent name="C:\PROJECT\UNIMOA_SYNC\tsInsert\src\main\resources" />
       <recent name="C:\PROJECT\UNIMOA_SYNC\zeroize\src\main\resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="net.infobank.common.dto" />
       <recent name="net.infobank.common.config" />
-      <recent name="net.infobank.common" />
       <recent name="net.infobank" />
+      <recent name="net.infobank.common.dto" />
+      <recent name="net.infobank.common" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -189,7 +201,7 @@
       <workItem from="1674804658137" duration="68000" />
       <workItem from="1674804759111" duration="9000" />
       <workItem from="1674804781749" duration="2470000" />
-      <workItem from="1674807271252" duration="40382000" />
+      <workItem from="1674807271252" duration="65389000" />
     </task>
     <task id="LOCAL-00001" summary="zeroize">
       <created>1675068463240</created>
@@ -219,7 +231,35 @@
       <option name="project" value="LOCAL" />
       <updated>1675385885666</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="tsInsert">
+      <created>1675646186600</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1675646186600</updated>
+    </task>
+    <task id="LOCAL-00006" summary="tsInsert 서버포트 수정">
+      <created>1675647354561</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1675647354561</updated>
+    </task>
+    <task id="LOCAL-00007" summary="tsInsert 주석추가">
+      <created>1675649376737</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1675649376737</updated>
+    </task>
+    <task id="LOCAL-00008" summary=".">
+      <created>1675649631966</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1675649631966</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -241,6 +281,10 @@
     <MESSAGE value="zeroize yml 수정" />
     <MESSAGE value="zeroize 시간계산 수정" />
     <MESSAGE value="zeroize dto 이름변경" />
-    <option name="LAST_COMMIT_MESSAGE" value="zeroize dto 이름변경" />
+    <MESSAGE value="tsInsert" />
+    <MESSAGE value="tsInsert 서버포트 수정" />
+    <MESSAGE value="tsInsert 주석추가" />
+    <MESSAGE value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
   </component>
 </project>
