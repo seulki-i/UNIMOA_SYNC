@@ -14,20 +14,20 @@ import javax.sql.DataSource;
 
 /**
  * @author skkim
- * @since 2023-02-06
+ * @since 2023-02-07
  */
 @Configuration
 @EnableTransactionManagement
-public class UniRs4DataSourceConfig {
-    @Bean(name = "uniRs4DataSource")
-    @ConfigurationProperties(prefix = "spring.datasource.unirs4")
-    public DataSource uniRs4DataSource() {
+public class AlertEmmaDataSourceConfig {
+    @Bean(name = "alertEmmaDataSource")
+    @ConfigurationProperties(prefix = "spring.datasource.alertemma")
+    public DataSource alertEmmaDataSource() {
         return DataSourceBuilder.create().type(HikariDataSource.class).build();
     }
 
-    @Bean(name = "uniRs4JdbcTemplate")
+    @Bean(name = "alertEmmaJdbcTemplate")
     @Autowired
-    public JdbcTemplate uniRs4JdbcTemplate(@Qualifier("uniRs4DataSource") DataSource dataSource) {
+    public JdbcTemplate alertEmmaJdbcTemplate(@Qualifier("alertEmmaDataSource") DataSource dataSource) {
         return new JdbcTemplate(dataSource);
     }
 }

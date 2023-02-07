@@ -31,33 +31,37 @@ public class TsRsDelayService {
     private static final Logger logger = LoggerFactory.getLogger(TsRsDelayService.class);
 
     private final JdbcTemplate newAuthDbJdbcTemplate;
-    private final JdbcTemplate uniRs1DataSource;
-    private final JdbcTemplate uniRs2DataSource;
-    private final JdbcTemplate uniRs3DataSource;
-    private final JdbcTemplate uniRs4DataSource;
-    private final JdbcTemplate grs1DataSource;
-    private final JdbcTemplate grs2DataSource;
-    private final JdbcTemplate rcs1DataSource;
-    private final JdbcTemplate rcs2DataSource;
+
+    private final JdbcTemplate alertEmmaJdbcTemplate;
+    private final JdbcTemplate uniRs1JdbcTemplate;
+    private final JdbcTemplate uniRs2JdbcTemplate;
+    private final JdbcTemplate uniRs3JdbcTemplate;
+    private final JdbcTemplate uniRs4JdbcTemplate;
+    private final JdbcTemplate grs1JdbcTemplate;
+    private final JdbcTemplate grs2JdbcTemplate;
+    private final JdbcTemplate rcs1JdbcTemplate;
+    private final JdbcTemplate rcs2JdbcTemplate;
 
     public TsRsDelayService(@Qualifier("newAuthDbJdbcTemplate") JdbcTemplate newAuthDbJdbcTemplate,
-                            @Qualifier("uniRs1JdbcTemplate") JdbcTemplate uniRs1DataSource,
-                            @Qualifier("uniRs2JdbcTemplate") JdbcTemplate uniRs2DataSource,
-                            @Qualifier("uniRs3JdbcTemplate") JdbcTemplate uniRs3DataSource,
-                            @Qualifier("uniRs4JdbcTemplate") JdbcTemplate uniRs4DataSource,
-                            @Qualifier("grs1JdbcTemplate") JdbcTemplate grs1DataSource,
-                            @Qualifier("grs2JdbcTemplate") JdbcTemplate grs2DataSource,
-                            @Qualifier("rcs1JdbcTemplate") JdbcTemplate rcs1DataSource,
-                            @Qualifier("rcs2JdbcTemplate") JdbcTemplate rcs2DataSource) {
+                            @Qualifier("alertEmmaJdbcTemplate") JdbcTemplate alertEmmaJdbcTemplate,
+                            @Qualifier("uniRs1JdbcTemplate") JdbcTemplate uniRs1JdbcTemplate,
+                            @Qualifier("uniRs2JdbcTemplate") JdbcTemplate uniRs2JdbcTemplate,
+                            @Qualifier("uniRs3JdbcTemplate") JdbcTemplate uniRs3JdbcTemplate,
+                            @Qualifier("uniRs4JdbcTemplate") JdbcTemplate uniRs4JdbcTemplate,
+                            @Qualifier("grs1JdbcTemplate") JdbcTemplate grs1JdbcTemplate,
+                            @Qualifier("grs2JdbcTemplate") JdbcTemplate grs2JdbcTemplate,
+                            @Qualifier("rcs1JdbcTemplate") JdbcTemplate rcs1JdbcTemplate,
+                            @Qualifier("rcs2JdbcTemplate") JdbcTemplate rcs2JdbcTemplate) {
         this.newAuthDbJdbcTemplate = newAuthDbJdbcTemplate;
-        this.uniRs1DataSource = uniRs1DataSource;
-        this.uniRs2DataSource = uniRs2DataSource;
-        this.uniRs3DataSource = uniRs3DataSource;
-        this.uniRs4DataSource = uniRs4DataSource;
-        this.grs1DataSource = grs1DataSource;
-        this.grs2DataSource = grs2DataSource;
-        this.rcs1DataSource = rcs1DataSource;
-        this.rcs2DataSource = rcs2DataSource;
+        this.alertEmmaJdbcTemplate = alertEmmaJdbcTemplate;
+        this.uniRs1JdbcTemplate = uniRs1JdbcTemplate;
+        this.uniRs2JdbcTemplate = uniRs2JdbcTemplate;
+        this.uniRs3JdbcTemplate = uniRs3JdbcTemplate;
+        this.uniRs4JdbcTemplate = uniRs4JdbcTemplate;
+        this.grs1JdbcTemplate = grs1JdbcTemplate;
+        this.grs2JdbcTemplate = grs2JdbcTemplate;
+        this.rcs1JdbcTemplate = rcs1JdbcTemplate;
+        this.rcs2JdbcTemplate = rcs2JdbcTemplate;
     }
 
     public void insert() {
@@ -118,17 +122,24 @@ public class TsRsDelayService {
 
                     logger.info("1차 : " + smsSendCheck);
 
-                    if(smsSendCheck.equals("Y")) {
+                    if (smsSendCheck.equals("Y")) {
                         String smsSendMessage = smsSendMessage(alert.getCode(), alert.getFaultType(), "", alertInsertString);
-                        
+
                         //수신할 대상 조회
                         String selectQuery2 =
                                 "SELECT alert_recipient FROM alert_recipient WHERE alertinfo_key = " + alert.getKey();
 
+                        List<String> userList = new ArrayList<>(newAuthDbJdbcTemplate.query(selectQuery, (rs, i) ->
+                                rs.getString("alert_recipient")));
+
+                        for (String number : userList) {
+                            smsSendAction(number, alert.getCallback(), smsSendMessage, alertEmmaKey);
+                        }
+
+                        //발송 후 alertinfo update
 
 
                     }
-
 
 
                 }
@@ -145,42 +156,42 @@ public class TsRsDelayService {
                         " FROM mt_tran " +
                         " WHERE tran_status = '2' AND tran_recvdate >= DATE_ADD(TIMESTAMP(CURRENT_TIME), INTERVAL -1 HOUR) AND TIMESTAMPDIFF(SECOND,tran_recvdate ,tran_rssentdate) > 60";
 
-        resultList.add(uniRs1DataSource.queryForObject(selectQuery, (rs, i) -> new RsCountDTO(
+        resultList.add(uniRs1JdbcTemplate.queryForObject(selectQuery, (rs, i) -> new RsCountDTO(
                 "unirs1",
                 rs.getLong("delaycnt")
         )));
 
-        resultList.add(uniRs2DataSource.queryForObject(selectQuery, (rs, i) -> new RsCountDTO(
+        resultList.add(uniRs2JdbcTemplate.queryForObject(selectQuery, (rs, i) -> new RsCountDTO(
                 "unirs2",
                 rs.getLong("delaycnt")
         )));
 
-        resultList.add(uniRs3DataSource.queryForObject(selectQuery, (rs, i) -> new RsCountDTO(
+        resultList.add(uniRs3JdbcTemplate.queryForObject(selectQuery, (rs, i) -> new RsCountDTO(
                 "unirs3",
                 rs.getLong("delaycnt")
         )));
 
-        resultList.add(uniRs4DataSource.queryForObject(selectQuery, (rs, i) -> new RsCountDTO(
+        resultList.add(uniRs4JdbcTemplate.queryForObject(selectQuery, (rs, i) -> new RsCountDTO(
                 "unirs4",
                 rs.getLong("delaycnt")
         )));
 
-        resultList.add(grs1DataSource.queryForObject(selectQuery, (rs, i) -> new RsCountDTO(
+        resultList.add(grs1JdbcTemplate.queryForObject(selectQuery, (rs, i) -> new RsCountDTO(
                 "grs1",
                 rs.getLong("delaycnt")
         )));
 
-        resultList.add(grs2DataSource.queryForObject(selectQuery, (rs, i) -> new RsCountDTO(
+        resultList.add(grs2JdbcTemplate.queryForObject(selectQuery, (rs, i) -> new RsCountDTO(
                 "grs2",
                 rs.getLong("delaycnt")
         )));
 
-        resultList.add(rcs1DataSource.queryForObject(selectQuery, (rs, i) -> new RsCountDTO(
+        resultList.add(rcs1JdbcTemplate.queryForObject(selectQuery, (rs, i) -> new RsCountDTO(
                 "rcs1",
                 rs.getLong("delaycnt")
         )));
 
-        resultList.add(rcs2DataSource.queryForObject(selectQuery, (rs, i) -> new RsCountDTO(
+        resultList.add(rcs2JdbcTemplate.queryForObject(selectQuery, (rs, i) -> new RsCountDTO(
                 "rcs2",
                 rs.getLong("delaycnt")
         )));
@@ -215,8 +226,8 @@ public class TsRsDelayService {
         return result;
     }
 
-    public String smsSendMessage(int code, String faultType, String message1, String message2){
-        String selectQuery  =
+    public String smsSendMessage(int code, String faultType, String message1, String message2) {
+        String selectQuery =
                 "SELECT A.message AS m1, B.type_message AS m2, B.value_message AS m3 " +
                         "FROM alertcode_msg AS A, faulttype_msg AS B " +
                         "WHERE A.alert_code = " + code + " AND B.fault_type = '" + faultType + "'";
@@ -227,7 +238,24 @@ public class TsRsDelayService {
                 rs.getString("m3")
         ));
 
-        return  (message.getM1() + " " + message.getM2()).replace("%s", message1) +
+        return (message.getM1() + " " + message.getM2()).replace("%s", message1) +
                 " " + message.getM3().replace("%d", message2) + " " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("MM/dd HH:mm"));
+    }
+
+    public String smsSendAction(String recipient, String callback, String smsSendMessage, String alertEmmaKey) {
+        String result = "N";
+
+        String insertQuery =
+                "INSERT INTO em_smt_tran (" +
+                        "alert_emma_key, priority, date_client_req, content, callback, service_type, msg_status, broadcast_yn, recipient_num, country_code " +
+                        ") VALUES ( " +
+                        "'" + alertEmmaKey + "', 'S', SYSDATE(), '" + smsSendMessage + "', '" + callback + "', '0', '1', 'N', '" + recipient + "', '82')";
+
+        int update = alertEmmaJdbcTemplate.update(insertQuery);
+
+        if (update == 1) {
+            result = "Y";
+        }
+        return result;
     }
 }
