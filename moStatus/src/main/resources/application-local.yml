@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    newauthdb: # 5.7
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://172.16.0.140:3306/auth
+      username: unimoa
+      password: pwunimoa
+    alertemma:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://172.16.0.140:3306/auth
+      username: unimoa
+      password: pwunimoa
+    newmots1:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://172.16.0.140:3306/mots
+      username: unimoa
+      password: pwunimoa
+    newmots2:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://172.16.0.140:3306/mots
+      username: unimoa
+      password: pwunimoa
+server:
+  port: 19016
+#logging:
+#  config: classpath:logback.xml

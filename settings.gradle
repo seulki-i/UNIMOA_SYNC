@@ -2,4 +2,5 @@ rootProject.name = 'UNIMOA_SYNC'
 include 'zeroize'
 include 'tsInsert'
 include 'TsRsDelay'
+include 'moStatus'
 

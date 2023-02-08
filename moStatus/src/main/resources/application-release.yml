@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    newauthdb: # 5.7
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://10.10.11.32:3306/newauthdb?serverTimezone=Asia/Seoul&useSSL=false&zeroDateTimeBehavior=convertToNull
+      username: newgw
+      password: pwnewgw
+    alertemma:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://10.10.11.32:3306/alertemma_db?serverTimezone=Asia/Seoul&useSSL=false&zeroDateTimeBehavior=convertToNull
+      username: newgw
+      password: pwnewgw
+    newmots1:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://203.248.251.134:3306/mots?serverTimezone=Asia/Seoul&useSSL=false
+      username: newgw
+      password: pwnewgw
+    newmots2:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://203.248.251.135:3306/mots?serverTimezone=Asia/Seoul&useSSL=false
+      username: newgw
+      password: pwnewgw
+server:
+  port: 19016
+logging:
+  config: classpath:logback.xml
