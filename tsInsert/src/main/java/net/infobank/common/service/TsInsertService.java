@@ -35,7 +35,7 @@ public class TsInsertService {
      * alertinfo, alert_recipient 테이블 insert, alertinfo 테이블 update
      */
     public void InsertAlertInfoTsCode() {
-        logger.info("start : tsCode");
+        logger.info("START : tsCode");
         List<Integer> faultList = new ArrayList<>(); //1003_1
         faultList.add(10001);
         faultList.add(10002);
@@ -85,7 +85,7 @@ public class TsInsertService {
                 }
             }
         }
-        logger.info("end : tsCode");
+        logger.info("END : tsCode");
     }
 
     /**
@@ -93,7 +93,7 @@ public class TsInsertService {
      * alertinfo, alert_recipient 테이블 insert, alertinfo 테이블 update
      */
     public void InsertAlertInfoTId() {
-        logger.info("start : tsId");
+        logger.info("START : tsId");
         List<Integer> faultList = new ArrayList<>(); //1003_2
         faultList.add(10011);
         faultList.add(10012);
@@ -131,7 +131,7 @@ public class TsInsertService {
                 }
             }
         }
-        logger.info("end : tsId");
+        logger.info("END : tsId");
     }
 
     public void insertTsCode(TsInfoDTO dto, int i) {
@@ -165,15 +165,13 @@ public class TsInsertService {
 
         long alertInfoKey = keyHolder.getKey().longValue();
 
-        String insertQuery2 =
-                "INSERT INTO alert_recipient (alertinfo_key, alert_recipient) VALUES"
-                        + "('" + alertInfoKey + "', '01072719753'), " // 김현빈
-                        + "('" + alertInfoKey + "', '01050229397'), " // 류호빈
-                        + "('" + alertInfoKey + "', '01027935334'), " // 이재희
-                        + "('" + alertInfoKey + "', '01089696511'), " // 이정해
-                        + "('" + alertInfoKey + "', '01020365890')"; // 이진호
+        for (String number : recipientList()) {
+            String insertQuery2 =
+                    "INSERT INTO alert_recipient (alertinfo_key, alert_recipient) VALUES " +
+                            "('" + alertInfoKey + "', '" + number + "') ";
 
-        newAuthDbJdbcTemplate.update(insertQuery2);
+            newAuthDbJdbcTemplate.update(insertQuery2);
+        }
 
         String updateQuery = "UPDATE alertinfo SET allow = 'Y' WHERE alertinfo_key =" + alertInfoKey;
         newAuthDbJdbcTemplate.update(updateQuery);
@@ -212,19 +210,24 @@ public class TsInsertService {
 
         long alertInfoKey = keyHolder.getKey().longValue();
 
-        String insertQuery2 =
-                "INSERT INTO alert_recipient (alertinfo_key, alert_recipient) VALUES"
-                        + "('" + alertInfoKey + "', '01072719753'), " // 김현빈
-                        + "('" + alertInfoKey + "', '01050229397'), " // 류호빈
-                        + "('" + alertInfoKey + "', '01027935334'), " // 이재희
-                        + "('" + alertInfoKey + "', '01089696511'), " // 이정해
-                        + "('" + alertInfoKey + "', '01020365890')"; // 이진호
+        for (String number : recipientList()) {
+            String insertQuery2 =
+                    "INSERT INTO alert_recipient (alertinfo_key, alert_recipient) VALUES " +
+                            "('" + alertInfoKey + "', '" + number + "') ";
 
-        newAuthDbJdbcTemplate.update(insertQuery2);
+            newAuthDbJdbcTemplate.update(insertQuery2);
+        }
 
         String updateQuery = "UPDATE alertinfo SET allow = 'Y' WHERE alertinfo_key =" + alertInfoKey;
         newAuthDbJdbcTemplate.update(updateQuery);
 
         logger.info("TS INFO : " + dto.getTsId() + " / " + i);
+    }
+
+    public List<String> recipientList() {
+        String selectQuery =
+                "SELECT alert_recipient FROM alert_recipient_etc WHERE etc_key = 'tsInsert'";
+
+        return new ArrayList<>(newAuthDbJdbcTemplate.query(selectQuery, (rs, i) -> rs.getString("alert_recipient")));
     }
 }

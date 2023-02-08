@@ -4,21 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e883ec2-b17f-45af-97af-124b262027d1" name="Changes" comment="tsRsDelay data source 추가">
-      <change afterPath="$PROJECT_DIR$/moStatus/src/main/java/net/infobank/MoStatusApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/moStatus/src/main/java/net/infobank/common/CommandLineAppStartupRunner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/moStatus/src/main/java/net/infobank/common/config/AlertEmmaDataSourceConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/moStatus/src/main/java/net/infobank/common/config/Mots1DataSourceConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/moStatus/src/main/java/net/infobank/common/config/Mots2DataSourceConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/moStatus/src/main/java/net/infobank/common/config/NewAuthDbDataSourceConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/moStatus/src/main/java/net/infobank/common/dto/MoDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/moStatus/src/main/java/net/infobank/common/service/MoStatusService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/moStatus/src/main/resources/application-local.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/moStatus/src/main/resources/application-release.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/moStatus/src/main/resources/logback.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+    <list default="true" id="4e883ec2-b17f-45af-97af-124b262027d1" name="Changes" comment="tsInsert">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsInsert/src/main/java/net/infobank/common/service/TsInsertService.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsInsert/src/main/java/net/infobank/common/service/TsInsertService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,7 +203,7 @@
       <workItem from="1674804658137" duration="68000" />
       <workItem from="1674804759111" duration="9000" />
       <workItem from="1674804781749" duration="2470000" />
-      <workItem from="1674807271252" duration="85211000" />
+      <workItem from="1674807271252" duration="86584000" />
     </task>
     <task id="LOCAL-00001" summary="zeroize">
       <created>1675068463240</created>
@@ -287,7 +275,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675746049029</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="moStatus">
+      <created>1675838772875</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1675838772875</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -315,6 +310,7 @@
     <MESSAGE value="." />
     <MESSAGE value="tsRsDelay 개발중" />
     <MESSAGE value="tsRsDelay data source 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="tsRsDelay data source 추가" />
+    <MESSAGE value="moStatus" />
+    <option name="LAST_COMMIT_MESSAGE" value="moStatus" />
   </component>
 </project>
