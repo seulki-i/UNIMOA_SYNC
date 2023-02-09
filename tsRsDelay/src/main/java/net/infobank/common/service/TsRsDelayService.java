@@ -69,6 +69,7 @@ public class TsRsDelayService {
      * 알람전송, alertlog_yyyymmdd 테이블 insert, alertinfo 테이블 update
      */
     public void insert() {
+        logger.info("START");
         String selectQuery =
                 "SELECT alertinfo_key, alert_code, allow, alert_id, alert_callback, fault_type, alert_repeat, alert_period, alert_sendcnt, alert_sendtime " +
                         " FROM alertinfo WHERE alert_code = '1002' AND fault_type = '10022' AND allow IN ('Y', 'P') ORDER BY fault_type, alert_id";
@@ -148,6 +149,7 @@ public class TsRsDelayService {
                 }
             }
         }
+        logger.info("END");
     }
 
     public List<RsCountDTO> rsMtTranList() {

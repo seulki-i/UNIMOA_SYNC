@@ -11,42 +11,42 @@ spring:
       username: newgw
       password: pwnewgw
     unirs1: # 5.7
-      driver-class-name: com.mysql.jdbc.Driver
+      driver-class-name: com.mysql.cj.jdbc.Driver
       jdbc-url: jdbc:mysql://10.10.11.180:3306/unirsdb01?serverTimezone=Asia/Seoul&useSSL=false
       username: newgw
       password: pwnewgw
     unirs2:
-      driver-class-name: com.mysql.jdbc.Driver
+      driver-class-name: com.mysql.cj.jdbc.Driver
       jdbc-url: jdbc:mysql://10.10.11.180:3306/unirsdb02?serverTimezone=Asia/Seoul&useSSL=false
       username: newgw
       password: pwnewgw
     unirs3:
-      driver-class-name: com.mysql.jdbc.Driver
+      driver-class-name: com.mysql.cj.jdbc.Driver
       jdbc-url: jdbc:mysql://10.10.11.12:3306/unirsdb03?serverTimezone=Asia/Seoul&useSSL=false
       username: newgw
       password: pwnewgw
     unirs4:
-      driver-class-name: com.mysql.jdbc.Driver
+      driver-class-name: com.mysql.cj.jdbc.Driver
       jdbc-url: jdbc:mysql://10.10.11.12:3306/unirsdb04?serverTimezone=Asia/Seoul&useSSL=false
       username: newgw
       password: pwnewgw
     grs1: # 5.7
-      driver-class-name: com.mysql.jdbc.Driver
+      driver-class-name: com.mysql.cj.jdbc.Driver
       jdbc-url: jdbc:mysql://10.10.11.32:3306/wngrs01?serverTimezone=Asia/Seoul&useSSL=false
       username: newgw
       password: pwnewgw
     grs2:
-      driver-class-name: com.mysql.jdbc.Driver
+      driver-class-name: com.mysql.cj.jdbc.Driver
       jdbc-url: jdbc:mysql://10.10.11.32:3306/wngrs02?serverTimezone=Asia/Seoul&useSSL=false
       username: newgw
       password: pwnewgw
     rcs1: # 5.7
-      driver-class-name: com.mysql.jdbc.Driver
+      driver-class-name: com.mysql.cj.jdbc.Driver
       jdbc-url: jdbc:mysql://10.10.11.66:3306/rcsrsdb01?serverTimezone=Asia/Seoul&useSSL=false
       username: newgw
       password: pwnewgw
     rcs2:
-      driver-class-name: com.mysql.jdbc.Driver
+      driver-class-name: com.mysql.cj.jdbc.Driver
       jdbc-url: jdbc:mysql://10.10.11.66:3306/rcsrsdb02?serverTimezone=Asia/Seoul&useSSL=false
       username: newgw
       password: pwnewgw
