@@ -5,30 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e883ec2-b17f-45af-97af-124b262027d1" name="Changes" comment="tsRsDelay">
-      <change afterPath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/CommandLineAppStartupRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/config/AlertEmmaDataSourceConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/config/AlertEmmaDataSourceConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/config/Grs1DataSourceConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/config/Grs1DataSourceConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/config/Grs2DataSourceConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/config/Grs2DataSourceConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/config/NewAuthDbDataSourceConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/config/NewAuthDbDataSourceConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/config/Rcs1DataSourceConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/config/Rcs1DataSourceConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/config/Rcs2DataSourceConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/config/Rcs2DataSourceConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/config/UniRs1DataSourceConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/config/UniRs1DataSourceConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/config/UniRs2DataSourceConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/config/UniRs2DataSourceConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/config/UniRs3DataSourceConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/config/UniRs3DataSourceConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/config/UniRs4DataSourceConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/config/UniRs4DataSourceConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/dto/AlertInfoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/dto/AlertInfoDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/dto/MessageDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/dto/MessageDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/dto/RsCountDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/dto/RsCountDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/service/CommandLineAppStartupRunner.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/service/TsRsDelayService.java" beforeDir="false" afterPath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/service/TsRsDelayService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/tsRsDelayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/tsRsDelayApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TsRsDelay/src/main/resources/application-local.yml" beforeDir="false" afterPath="$PROJECT_DIR$/TsRsDelay/src/main/resources/application-local.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TsRsDelay/src/main/resources/application-release.yml" beforeDir="false" afterPath="$PROJECT_DIR$/TsRsDelay/src/main/resources/application-release.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TsRsDelay/src/main/resources/logback.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TsRsDelay/src/main/resources/logback.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsInsert/src/main/java/net/infobank/tsInsertApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsInsert/src/main/java/net/infobank/tsInsertApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/TsRsDelayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsRsDelay/src/main/java/net/infobank/TsRsDelayApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/CommandLineAppStartupRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsRsDelay/src/main/java/net/infobank/common/CommandLineAppStartupRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/config/AlertEmmaDataSourceConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsRsDelay/src/main/java/net/infobank/common/config/AlertEmmaDataSourceConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/config/Grs1DataSourceConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsRsDelay/src/main/java/net/infobank/common/config/Grs1DataSourceConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/config/Grs2DataSourceConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsRsDelay/src/main/java/net/infobank/common/config/Grs2DataSourceConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/config/NewAuthDbDataSourceConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsRsDelay/src/main/java/net/infobank/common/config/NewAuthDbDataSourceConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/config/Rcs1DataSourceConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsRsDelay/src/main/java/net/infobank/common/config/Rcs1DataSourceConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/config/Rcs2DataSourceConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsRsDelay/src/main/java/net/infobank/common/config/Rcs2DataSourceConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/dto/AlertInfoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsRsDelay/src/main/java/net/infobank/common/dto/AlertInfoDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/dto/MessageDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsRsDelay/src/main/java/net/infobank/common/dto/MessageDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/dto/RsCountDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsRsDelay/src/main/java/net/infobank/common/dto/RsCountDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/service/TsRsDelayService.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsRsDelay/src/main/java/net/infobank/common/service/TsRsDelayService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TsRsDelay/src/main/resources/application-local.yml" beforeDir="false" afterPath="$PROJECT_DIR$/tsRsDelay/src/main/resources/application-local.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TsRsDelay/src/main/resources/application-release.yml" beforeDir="false" afterPath="$PROJECT_DIR$/tsRsDelay/src/main/resources/application-release.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TsRsDelay/src/main/resources/logback.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tsRsDelay/src/main/resources/logback.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,6 +115,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "SQL Resolution Scopes",
     "spring.configuration.checksum": "ec00595415db89e403274dfb8e966d07",
     "vue.rearranger.settings.migration": "true"
   },
@@ -140,8 +134,8 @@
       <recent name="C:\PROJECT\UNIMOA_SYNC\zeroize\src\main\resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="net.infobank.common.config" />
       <recent name="net.infobank.common" />
+      <recent name="net.infobank.common.config" />
       <recent name="net.infobank" />
       <recent name="net.infobank.common.service" />
       <recent name="net.infobank.common.dto" />
@@ -233,7 +227,7 @@
       <workItem from="1674804781749" duration="2470000" />
       <workItem from="1674807271252" duration="95476000" />
       <workItem from="1675919792385" duration="1080000" />
-      <workItem from="1675920878270" duration="919000" />
+      <workItem from="1675920878270" duration="2552000" />
     </task>
     <task id="LOCAL-00001" summary="zeroize">
       <created>1675068463240</created>
@@ -340,7 +334,28 @@
       <option name="project" value="LOCAL" />
       <updated>1675919866492</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="tsRsDelay">
+      <created>1675921843998</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1675921843998</updated>
+    </task>
+    <task id="LOCAL-00017" summary="tsRsDelay">
+      <created>1675921955699</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1675921955699</updated>
+    </task>
+    <task id="LOCAL-00018" summary="tsRsDelay">
+      <created>1675921994384</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1675921994384</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -369,9 +384,9 @@
     <MESSAGE value="tsRsDelay data source 추가" />
     <MESSAGE value="moStatus" />
     <MESSAGE value="tsInsert 수신번호 리스트 수정" />
-    <MESSAGE value="tsRsDelay" />
     <MESSAGE value="." />
-    <option name="LAST_COMMIT_MESSAGE" value="." />
+    <MESSAGE value="tsRsDelay" />
+    <option name="LAST_COMMIT_MESSAGE" value="tsRsDelay" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -383,5 +398,9 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
