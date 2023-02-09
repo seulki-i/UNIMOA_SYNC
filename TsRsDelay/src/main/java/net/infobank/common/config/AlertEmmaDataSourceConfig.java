@@ -14,20 +14,20 @@ import javax.sql.DataSource;
 
 /**
  * @author skkim
- * @since 2023-02-07
+ * @since 2023-02-09
  */
 @Configuration
 @EnableTransactionManagement
 public class AlertEmmaDataSourceConfig {
-    @Bean(name = "alertEmmaDataSource")
+    @Bean(name = "alertemmaDataSource")
     @ConfigurationProperties(prefix = "spring.datasource.alertemma")
-    public DataSource alertEmmaDataSource() {
+    public DataSource alertemmaDataSource() {
         return DataSourceBuilder.create().type(HikariDataSource.class).build();
     }
 
-    @Bean(name = "alertEmmaJdbcTemplate")
+    @Bean(name = "alertemmaJdbcTemplate")
     @Autowired
-    public JdbcTemplate alertEmmaJdbcTemplate(@Qualifier("alertEmmaDataSource") DataSource dataSource) {
+    public JdbcTemplate alertemmaJdbcTemplate(@Qualifier("alertemmaDataSource") DataSource dataSource) {
         return new JdbcTemplate(dataSource);
     }
 }

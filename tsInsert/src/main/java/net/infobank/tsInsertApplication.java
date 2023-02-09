@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 @RequiredArgsConstructor
-public class tsInsertApplication {
+public class TsInsertApplication {
 
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder)  {
@@ -29,7 +29,7 @@ public class tsInsertApplication {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(tsInsertApplication.class, args);
+        SpringApplication.run(TsInsertApplication.class, args);
     }
 
 }

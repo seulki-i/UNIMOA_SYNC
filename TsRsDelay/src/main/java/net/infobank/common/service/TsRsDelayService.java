@@ -24,40 +24,39 @@ import java.util.List;
 
 /**
  * @author skkim
- * @since 2023-02-06
+ * @since 2023-02-09
  */
 @Service
 public class TsRsDelayService {
     private static final Logger logger = LoggerFactory.getLogger(TsRsDelayService.class);
 
     private final JdbcTemplate newAuthDbJdbcTemplate;
-
-    private final JdbcTemplate alertEmmaJdbcTemplate;
-    private final JdbcTemplate uniRs1JdbcTemplate;
-    private final JdbcTemplate uniRs2JdbcTemplate;
-    private final JdbcTemplate uniRs3JdbcTemplate;
-    private final JdbcTemplate uniRs4JdbcTemplate;
+    private final JdbcTemplate alertemmaJdbcTemplate;
+    private final JdbcTemplate unirs1JdbcTemplate;
+    private final JdbcTemplate unirs2JdbcTemplate;
+    private final JdbcTemplate unirs3JdbcTemplate;
+    private final JdbcTemplate unirs4JdbcTemplate;
     private final JdbcTemplate grs1JdbcTemplate;
     private final JdbcTemplate grs2JdbcTemplate;
     private final JdbcTemplate rcs1JdbcTemplate;
     private final JdbcTemplate rcs2JdbcTemplate;
 
     public TsRsDelayService(@Qualifier("newAuthDbJdbcTemplate") JdbcTemplate newAuthDbJdbcTemplate,
-                            @Qualifier("alertEmmaJdbcTemplate") JdbcTemplate alertEmmaJdbcTemplate,
-                            @Qualifier("uniRs1JdbcTemplate") JdbcTemplate uniRs1JdbcTemplate,
-                            @Qualifier("uniRs2JdbcTemplate") JdbcTemplate uniRs2JdbcTemplate,
-                            @Qualifier("uniRs3JdbcTemplate") JdbcTemplate uniRs3JdbcTemplate,
-                            @Qualifier("uniRs4JdbcTemplate") JdbcTemplate uniRs4JdbcTemplate,
+                            @Qualifier("alertemmaJdbcTemplate") JdbcTemplate alertemmaJdbcTemplate,
+                            @Qualifier("unirs1JdbcTemplate") JdbcTemplate unirs1JdbcTemplate,
+                            @Qualifier("unirs2JdbcTemplate") JdbcTemplate unirs2JdbcTemplate,
+                            @Qualifier("unirs3JdbcTemplate") JdbcTemplate unirs3JdbcTemplate,
+                            @Qualifier("unirs4JdbcTemplate") JdbcTemplate unirs4JdbcTemplate,
                             @Qualifier("grs1JdbcTemplate") JdbcTemplate grs1JdbcTemplate,
                             @Qualifier("grs2JdbcTemplate") JdbcTemplate grs2JdbcTemplate,
                             @Qualifier("rcs1JdbcTemplate") JdbcTemplate rcs1JdbcTemplate,
                             @Qualifier("rcs2JdbcTemplate") JdbcTemplate rcs2JdbcTemplate) {
         this.newAuthDbJdbcTemplate = newAuthDbJdbcTemplate;
-        this.alertEmmaJdbcTemplate = alertEmmaJdbcTemplate;
-        this.uniRs1JdbcTemplate = uniRs1JdbcTemplate;
-        this.uniRs2JdbcTemplate = uniRs2JdbcTemplate;
-        this.uniRs3JdbcTemplate = uniRs3JdbcTemplate;
-        this.uniRs4JdbcTemplate = uniRs4JdbcTemplate;
+        this.alertemmaJdbcTemplate = alertemmaJdbcTemplate;
+        this.unirs1JdbcTemplate = unirs1JdbcTemplate;
+        this.unirs2JdbcTemplate = unirs2JdbcTemplate;
+        this.unirs3JdbcTemplate = unirs3JdbcTemplate;
+        this.unirs4JdbcTemplate = unirs4JdbcTemplate;
         this.grs1JdbcTemplate = grs1JdbcTemplate;
         this.grs2JdbcTemplate = grs2JdbcTemplate;
         this.rcs1JdbcTemplate = rcs1JdbcTemplate;
@@ -159,22 +158,22 @@ public class TsRsDelayService {
                         " FROM mt_tran " +
                         " WHERE tran_status = '2' AND tran_recvdate >= DATE_ADD(TIMESTAMP(CURRENT_TIME), INTERVAL -1 HOUR) AND TIMESTAMPDIFF(SECOND,tran_recvdate ,tran_rssentdate) > 60";
 
-        resultList.add(uniRs1JdbcTemplate.queryForObject(selectQuery, (rs, i) -> new RsCountDTO(
+        resultList.add(unirs1JdbcTemplate.queryForObject(selectQuery, (rs, i) -> new RsCountDTO(
                 "unirs1",
                 rs.getLong("delaycnt")
         )));
 
-        resultList.add(uniRs2JdbcTemplate.queryForObject(selectQuery, (rs, i) -> new RsCountDTO(
+        resultList.add(unirs2JdbcTemplate.queryForObject(selectQuery, (rs, i) -> new RsCountDTO(
                 "unirs2",
                 rs.getLong("delaycnt")
         )));
 
-        resultList.add(uniRs3JdbcTemplate.queryForObject(selectQuery, (rs, i) -> new RsCountDTO(
+        resultList.add(unirs3JdbcTemplate.queryForObject(selectQuery, (rs, i) -> new RsCountDTO(
                 "unirs3",
                 rs.getLong("delaycnt")
         )));
 
-        resultList.add(uniRs4JdbcTemplate.queryForObject(selectQuery, (rs, i) -> new RsCountDTO(
+        resultList.add(unirs4JdbcTemplate.queryForObject(selectQuery, (rs, i) -> new RsCountDTO(
                 "unirs4",
                 rs.getLong("delaycnt")
         )));
@@ -254,7 +253,7 @@ public class TsRsDelayService {
                         ") VALUES ( " +
                         "'" + alertEmmaKey + "', 'S', SYSDATE(), '" + smsSendMessage + "', '" + callback + "', '0', '1', 'N', '" + recipient + "', '82')";
 
-        int update = alertEmmaJdbcTemplate.update(insertQuery);
+        int update = alertemmaJdbcTemplate.update(insertQuery);
 
         if (update == 1) {
             result = "Y";
