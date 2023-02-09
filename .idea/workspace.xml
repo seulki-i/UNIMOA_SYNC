@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e883ec2-b17f-45af-97af-124b262027d1" name="Changes" comment="tsInsert">
+    <list default="true" id="4e883ec2-b17f-45af-97af-124b262027d1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/service/CommandLineAppStartupRunner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsInsert/src/main/java/net/infobank/common/service/TsInsertService.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsInsert/src/main/java/net/infobank/common/service/TsInsertService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/service/TsRsDelayService.java" beforeDir="false" afterPath="$PROJECT_DIR$/TsRsDelay/src/main/java/net/infobank/common/service/TsRsDelayService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,6 +114,7 @@
       <recent name="C:\PROJECT\UNIMOA_SYNC\zeroize\src\main\resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="net.infobank.common.service" />
       <recent name="net.infobank.common.config" />
       <recent name="net.infobank.common" />
       <recent name="net.infobank" />
@@ -203,7 +205,7 @@
       <workItem from="1674804658137" duration="68000" />
       <workItem from="1674804759111" duration="9000" />
       <workItem from="1674804781749" duration="2470000" />
-      <workItem from="1674807271252" duration="86584000" />
+      <workItem from="1674807271252" duration="93035000" />
     </task>
     <task id="LOCAL-00001" summary="zeroize">
       <created>1675068463240</created>
@@ -282,7 +284,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675838772875</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="tsInsert 수신번호 리스트 수정">
+      <created>1675840116695</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1675840116695</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -311,6 +320,7 @@
     <MESSAGE value="tsRsDelay 개발중" />
     <MESSAGE value="tsRsDelay data source 추가" />
     <MESSAGE value="moStatus" />
-    <option name="LAST_COMMIT_MESSAGE" value="moStatus" />
+    <MESSAGE value="tsInsert 수신번호 리스트 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="tsInsert 수신번호 리스트 수정" />
   </component>
 </project>

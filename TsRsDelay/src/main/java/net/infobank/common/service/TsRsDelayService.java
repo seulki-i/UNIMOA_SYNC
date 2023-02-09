@@ -64,6 +64,11 @@ public class TsRsDelayService {
         this.rcs2JdbcTemplate = rcs2JdbcTemplate;
     }
 
+    /**
+     * alertinfo 테이블에서 해당하는 알람을
+     * 각 rs의 mt_tran 테이블에서 tran_recvdate이 1시간 지났는데 tran_status이 2(큐에적제 결과대기중)인 값이 10000건 이상일때
+     * 알람전송, alertlog_yyyymmdd 테이블 insert, alertinfo 테이블 update
+     */
     public void insert() {
         String selectQuery =
                 "SELECT alertinfo_key, alert_code, allow, alert_id, alert_callback, fault_type, alert_repeat, alert_period, alert_sendcnt, alert_sendtime " +
@@ -86,7 +91,7 @@ public class TsRsDelayService {
         String tableDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMM"));
 
         for (AlertInfoDTO alert : list) {
-            for (RsCountDTO rsData : rsList()) {
+            for (RsCountDTO rsData : rsMtTranList()) {
                 if (rsData.getCount() > 10000) {
                     String alertInsertCheck = "Y";
                     String alertInsertString = "[" + rsData.getRsId() + " " + NumberFormat.getInstance().format(rsData.getCount()) + "]";
@@ -113,7 +118,7 @@ public class TsRsDelayService {
 
                     newAuthDbJdbcTemplate.update(preparedStatementCreator, keyHolder);
 
-                    long alertInfoKey = keyHolder.getKey().longValue();
+                    long alertLogKey = keyHolder.getKey().longValue();
 
                     String alertEmmaKey = alert.getKey() + "_" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
 
@@ -123,32 +128,30 @@ public class TsRsDelayService {
                     logger.info("1차 : " + smsSendCheck);
 
                     if (smsSendCheck.equals("Y")) {
-                        String smsSendMessage = smsSendMessage(alert.getCode(), alert.getFaultType(), "", alertInsertString);
+                        String sendMessage = sendMessage(alert.getCode(), alert.getFaultType(), "", alertInsertString);
 
                         //수신할 대상 조회
                         String selectQuery2 =
                                 "SELECT alert_recipient FROM alert_recipient WHERE alertinfo_key = " + alert.getKey();
 
-                        List<String> userList = new ArrayList<>(newAuthDbJdbcTemplate.query(selectQuery, (rs, i) ->
+                        List<String> userList = new ArrayList<>(newAuthDbJdbcTemplate.query(selectQuery2, (rs, i) ->
                                 rs.getString("alert_recipient")));
 
                         for (String number : userList) {
-                            smsSendAction(number, alert.getCallback(), smsSendMessage, alertEmmaKey);
+                            smsSendAction(number, alert.getCallback(), sendMessage, alertEmmaKey);
                         }
 
                         //발송 후 alertinfo update
+                        alertInfoUpdate(alert.getKey(), tableDate, alertEmmaKey, alertLogKey);
 
-
+                        logger.info("실제 알람여부 : " + smsSendCheck + "(" + sendMessage + ")");
                     }
-
-
                 }
             }
         }
-
     }
 
-    public List<RsCountDTO> rsList() {
+    public List<RsCountDTO> rsMtTranList() {
         List<RsCountDTO> resultList = new ArrayList<>();
 
         String selectQuery =
@@ -226,7 +229,7 @@ public class TsRsDelayService {
         return result;
     }
 
-    public String smsSendMessage(int code, String faultType, String message1, String message2) {
+    public String sendMessage(int code, String faultType, String message1, String message2) {
         String selectQuery =
                 "SELECT A.message AS m1, B.type_message AS m2, B.value_message AS m3 " +
                         "FROM alertcode_msg AS A, faulttype_msg AS B " +
@@ -257,5 +260,25 @@ public class TsRsDelayService {
             result = "Y";
         }
         return result;
+    }
+
+    public void alertInfoUpdate(int alertInfoKey, String tableDate, String alertEmmaKey, long alertLogKey) {
+        String updateQuery =
+                "UPDATE alertinfo SET alert_sendcnt = alert_sendcnt +1, alert_sendtime = SYSDATE() " +
+                        "WHERE alertinfo_key = " + alertInfoKey;
+
+        int result = newAuthDbJdbcTemplate.update(updateQuery);
+
+        if (result == 1) {
+
+        }
+
+        //TODO result 가 1 일때만 아래 쿼리를 실행하야하는게 아닌지?
+        String updateQuery2 =
+                "UPDATE alertlog_" + tableDate + " SET " +
+                        "alert_send = 'Y', emma_key = '" + alertEmmaKey + "' " +
+                        "WHERE alert_seq = " + alertLogKey;
+
+        newAuthDbJdbcTemplate.update(updateQuery2);
     }
 }
