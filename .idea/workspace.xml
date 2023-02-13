@@ -5,7 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e883ec2-b17f-45af-97af-124b262027d1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/tsRsWait/src/main/java/net/infobank/TsRsWaitApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsRsWait/src/main/java/net/infobank/common/config/AlertEmmaDataSourceConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsRsWait/src/main/java/net/infobank/common/config/Grs1DataSourceConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsRsWait/src/main/java/net/infobank/common/config/Grs2DataSourceConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsRsWait/src/main/java/net/infobank/common/config/NewAuthDbDataSourceConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsRsWait/src/main/java/net/infobank/common/config/Rcs1DataSourceConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsRsWait/src/main/java/net/infobank/common/config/Rcs2DataSourceConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsRsWait/src/main/java/net/infobank/common/config/Unirs1DataSourceConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsRsWait/src/main/java/net/infobank/common/config/Unirs2DataSourceConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsRsWait/src/main/java/net/infobank/common/config/Unirs3DataSourceConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsRsWait/src/main/java/net/infobank/common/config/Unirs4DataSourceConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsRsWait/src/main/java/net/infobank/common/dto/AlertInfoDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsRsWait/src/main/java/net/infobank/common/dto/MessageDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsRsWait/src/main/java/net/infobank/common/dto/RsCountDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsRsWait/src/main/java/net/infobank/common/service/TsRsWaitService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsRsWait/src/main/resources/application-local.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsRsWait/src/main/resources/application-release.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsRsWait/src/main/resources/logback.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsRsDelay/src/main/java/net/infobank/common/service/TsRsDelayService.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsRsDelay/src/main/java/net/infobank/common/service/TsRsDelayService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +112,7 @@
     "database.data.extractors.current.export.id": "SQL Inserts",
     "database.data.extractors.current.id": "SQL Inserts",
     "jdk.selected.JAVA_MODULE": "1.8",
-    "last_opened_file_path": "C:/PROJECT/UNIMOA_SYNC",
+    "last_opened_file_path": "C:/PROJECT/UNIMOA_SYNC/tsRsWait/src/main/java/net/infobank/common/config",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -111,18 +132,18 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\PROJECT\UNIMOA_SYNC\tsRsWait\src\main\java\net\infobank\common\config" />
+      <recent name="C:\PROJECT\UNIMOA_SYNC\tsRsWait\src\main\resources" />
       <recent name="C:\PROJECT\UNIMOA_SYNC\tsRsDelay\src\main\resources" />
       <recent name="C:\PROJECT\UNIMOA_SYNC\moStatus\src\main\resources" />
       <recent name="C:\PROJECT\UNIMOA_SYNC\TsRsDelay\src\main\resources" />
-      <recent name="C:\PROJECT\UNIMOA_SYNC\tsInsert\src\main\resources" />
-      <recent name="C:\PROJECT\UNIMOA_SYNC\zeroize\src\main\resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="net.infobank.common" />
+      <recent name="net.infobank.common.dto" />
       <recent name="net.infobank.common.config" />
       <recent name="net.infobank" />
+      <recent name="net.infobank.common" />
       <recent name="net.infobank.common.service" />
-      <recent name="net.infobank.common.dto" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -212,7 +233,7 @@
       <workItem from="1674804781749" duration="2470000" />
       <workItem from="1674807271252" duration="95476000" />
       <workItem from="1675919792385" duration="1080000" />
-      <workItem from="1675920878270" duration="3405000" />
+      <workItem from="1675920878270" duration="13985000" />
     </task>
     <task id="LOCAL-00001" summary="zeroize">
       <created>1675068463240</created>
@@ -354,7 +375,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675923550543</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="port 수정">
+      <created>1675924561079</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1675924561079</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -385,18 +413,8 @@
     <MESSAGE value="tsInsert 수신번호 리스트 수정" />
     <MESSAGE value="." />
     <MESSAGE value="tsRsDelay" />
-    <option name="LAST_COMMIT_MESSAGE" value="tsRsDelay" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/tsRsDelay/src/main/java/net/infobank/common/service/TsRsDelayService.java</url>
-          <line>218</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="port 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="port 수정" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

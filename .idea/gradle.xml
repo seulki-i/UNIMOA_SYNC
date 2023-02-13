@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/moStatus" />
             <option value="$PROJECT_DIR$/tsInsert" />
             <option value="$PROJECT_DIR$/tsRsDelay" />
+            <option value="$PROJECT_DIR$/tsRsWait" />
             <option value="$PROJECT_DIR$/zeroize" />
           </set>
         </option>

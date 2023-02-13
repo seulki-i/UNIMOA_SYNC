@@ -27,8 +27,8 @@ import java.util.List;
  * @since 2023-02-09
  */
 @Service
-public class TsRsDelayService {
-    private static final Logger logger = LoggerFactory.getLogger(TsRsDelayService.class);
+public class TsRsWaitService {
+    private static final Logger logger = LoggerFactory.getLogger(TsRsWaitService.class);
 
     private final JdbcTemplate newAuthDbJdbcTemplate;
     private final JdbcTemplate alertemmaJdbcTemplate;
@@ -41,16 +41,16 @@ public class TsRsDelayService {
     private final JdbcTemplate rcs1JdbcTemplate;
     private final JdbcTemplate rcs2JdbcTemplate;
 
-    public TsRsDelayService(@Qualifier("newAuthDbJdbcTemplate") JdbcTemplate newAuthDbJdbcTemplate,
-                            @Qualifier("alertemmaJdbcTemplate") JdbcTemplate alertemmaJdbcTemplate,
-                            @Qualifier("unirs1JdbcTemplate") JdbcTemplate unirs1JdbcTemplate,
-                            @Qualifier("unirs2JdbcTemplate") JdbcTemplate unirs2JdbcTemplate,
-                            @Qualifier("unirs3JdbcTemplate") JdbcTemplate unirs3JdbcTemplate,
-                            @Qualifier("unirs4JdbcTemplate") JdbcTemplate unirs4JdbcTemplate,
-                            @Qualifier("grs1JdbcTemplate") JdbcTemplate grs1JdbcTemplate,
-                            @Qualifier("grs2JdbcTemplate") JdbcTemplate grs2JdbcTemplate,
-                            @Qualifier("rcs1JdbcTemplate") JdbcTemplate rcs1JdbcTemplate,
-                            @Qualifier("rcs2JdbcTemplate") JdbcTemplate rcs2JdbcTemplate) {
+    public TsRsWaitService(@Qualifier("newAuthDbJdbcTemplate") JdbcTemplate newAuthDbJdbcTemplate,
+                           @Qualifier("alertemmaJdbcTemplate") JdbcTemplate alertemmaJdbcTemplate,
+                           @Qualifier("unirs1JdbcTemplate") JdbcTemplate unirs1JdbcTemplate,
+                           @Qualifier("unirs2JdbcTemplate") JdbcTemplate unirs2JdbcTemplate,
+                           @Qualifier("unirs3JdbcTemplate") JdbcTemplate unirs3JdbcTemplate,
+                           @Qualifier("unirs4JdbcTemplate") JdbcTemplate unirs4JdbcTemplate,
+                           @Qualifier("grs1JdbcTemplate") JdbcTemplate grs1JdbcTemplate,
+                           @Qualifier("grs2JdbcTemplate") JdbcTemplate grs2JdbcTemplate,
+                           @Qualifier("rcs1JdbcTemplate") JdbcTemplate rcs1JdbcTemplate,
+                           @Qualifier("rcs2JdbcTemplate") JdbcTemplate rcs2JdbcTemplate) {
         this.newAuthDbJdbcTemplate = newAuthDbJdbcTemplate;
         this.alertemmaJdbcTemplate = alertemmaJdbcTemplate;
         this.unirs1JdbcTemplate = unirs1JdbcTemplate;
@@ -63,17 +63,13 @@ public class TsRsDelayService {
         this.rcs2JdbcTemplate = rcs2JdbcTemplate;
     }
 
-    /**
-     * alertinfo 테이블에서 해당하는 알람을
-     * 각 rs의 mt_tran 테이블에서 tran_recvdate이 1시간 지났는데 tran_status이 2(큐에적제 결과대기중)인 값이 10000건 이상일때
-     * 알람전송, alertlog_yyyymmdd 테이블 insert, alertinfo 테이블 update
-     */
     public void insert() {
         logger.info("START");
+
         String selectQuery =
                 "SELECT alertinfo_key, alert_code, allow, alert_id, alert_callback, fault_type, alert_repeat, alert_period, alert_sendcnt, alert_sendtime " +
-                        " FROM alertinfo WHERE alert_code = '1002' AND fault_type = '10022' AND allow IN ('Y', 'P') ORDER BY fault_type, alert_id";
-
+                        "FROM alertinfo WHERE alert_code = '1002' AND fault_type = '10021' AND allow IN ('Y', 'P') " +
+                        "ORDER BY fault_type, alert_id";
 
         List<AlertInfoDTO> list = new ArrayList<>(newAuthDbJdbcTemplate.query(selectQuery, (rs, i) -> new AlertInfoDTO(
                 rs.getInt("alertinfo_key"),
@@ -92,7 +88,7 @@ public class TsRsDelayService {
 
         for (AlertInfoDTO alert : list) {
             for (RsCountDTO rsData : rsMtTranList()) {
-                if (rsData.getCount() > 10000) {
+                if (rsData.getCount() > 1000) {
                     String alertInsertCheck = "Y";
                     String alertInsertString = "[" + rsData.getRsId() + " " + NumberFormat.getInstance().format(rsData.getCount()) + "]";
 
@@ -159,7 +155,7 @@ public class TsRsDelayService {
         String selectQuery =
                 "SELECT COUNT(tran_pr) AS delaycnt " +
                         " FROM mt_tran " +
-                        " WHERE tran_status = '2' AND tran_recvdate >= DATE_ADD(TIMESTAMP(CURRENT_TIME), INTERVAL -1 HOUR) AND TIMESTAMPDIFF(SECOND,tran_recvdate ,tran_rssentdate) > 60";
+                        " WHERE tran_status = '1' AND tran_recvdate >= DATE_ADD(TIMESTAMP(CURRENT_DATE), INTERVAL -1 DAY) AND TIMESTAMPDIFF(SECOND, tran_recvdate, SYSDATE()) > 300";
 
         resultList.add(unirs1JdbcTemplate.queryForObject(selectQuery, (rs, i) -> new RsCountDTO(
                 "unirs1",
