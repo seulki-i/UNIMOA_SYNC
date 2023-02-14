@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e883ec2-b17f-45af-97af-124b262027d1" name="Changes" comment="tsRsWait">
+    <list default="true" id="4e883ec2-b17f-45af-97af-124b262027d1" name="Changes" comment="tsRsDelay 수정">
       <change afterPath="$PROJECT_DIR$/queuena/src/main/java/net/infobank/QueueNaApplication.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/queuena/src/main/java/net/infobank/common/config/AlertEmmaDataSourceConfig.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/queuena/src/main/java/net/infobank/common/config/Grs1DataSourceConfig.java" afterDir="false" />
@@ -22,11 +22,8 @@
       <change afterPath="$PROJECT_DIR$/queuena/src/main/resources/application-local.yml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/queuena/src/main/resources/application-release.yml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/queuena/src/main/resources/logback.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/moStatus/src/main/java/net/infobank/common/service/MoStatusService.java" beforeDir="false" afterPath="$PROJECT_DIR$/moStatus/src/main/java/net/infobank/common/service/MoStatusService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsRsDelay/src/main/resources/application-local.yml" beforeDir="false" afterPath="$PROJECT_DIR$/tsRsDelay/src/main/resources/application-local.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -290,7 +287,7 @@
       <workItem from="1674804781749" duration="2470000" />
       <workItem from="1674807271252" duration="95476000" />
       <workItem from="1675919792385" duration="1080000" />
-      <workItem from="1675920878270" duration="31638000" />
+      <workItem from="1675920878270" duration="32031000" />
     </task>
     <task id="LOCAL-00001" summary="zeroize">
       <created>1675068463240</created>
@@ -453,7 +450,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676340922758</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="tsRsDelay 디비 추가">
+      <created>1676352535775</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1676352535775</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -487,7 +491,8 @@
     <MESSAGE value="port 수정" />
     <MESSAGE value="tsRsWait" />
     <MESSAGE value="moStatus dto 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="moStatus dto 수정" />
+    <MESSAGE value="tsRsDelay 디비 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="tsRsDelay 디비 추가" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

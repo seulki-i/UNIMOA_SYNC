@@ -93,8 +93,8 @@ public class MoStatusService {
             } catch (Exception e) {
                 logger.error(String.valueOf(e));
             }
-            logger.info("END");
         }
+        logger.info("END");
     }
 
     public List<MoDTO> moData() {
