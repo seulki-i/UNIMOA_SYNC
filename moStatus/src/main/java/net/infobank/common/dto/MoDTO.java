@@ -22,4 +22,14 @@ public class MoDTO {
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime lastUpdateDateTime;
+
+    @Override
+    public String toString() {
+        return "MoDTO{" +
+                "moId='" + moId + '\'' +
+                ", tsCode='" + tsCode + '\'' +
+                ", tsId='" + tsId + '\'' +
+                ", lastUpdateDateTime=" + lastUpdateDateTime +
+                '}';
+    }
 }
