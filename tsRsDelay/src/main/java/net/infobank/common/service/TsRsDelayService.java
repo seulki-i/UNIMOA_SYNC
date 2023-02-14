@@ -32,6 +32,7 @@ public class TsRsDelayService {
 
     private final JdbcTemplate newAuthDbJdbcTemplate;
     private final JdbcTemplate alertemmaJdbcTemplate;
+    private final JdbcTemplate smrsJdbcTemplate;
     private final JdbcTemplate unirs1JdbcTemplate;
     private final JdbcTemplate unirs2JdbcTemplate;
     private final JdbcTemplate unirs3JdbcTemplate;
@@ -43,6 +44,7 @@ public class TsRsDelayService {
 
     public TsRsDelayService(@Qualifier("newAuthDbJdbcTemplate") JdbcTemplate newAuthDbJdbcTemplate,
                             @Qualifier("alertemmaJdbcTemplate") JdbcTemplate alertemmaJdbcTemplate,
+                            @Qualifier("smrsJdbcTemplate") JdbcTemplate smrsJdbcTemplate,
                             @Qualifier("unirs1JdbcTemplate") JdbcTemplate unirs1JdbcTemplate,
                             @Qualifier("unirs2JdbcTemplate") JdbcTemplate unirs2JdbcTemplate,
                             @Qualifier("unirs3JdbcTemplate") JdbcTemplate unirs3JdbcTemplate,
@@ -53,6 +55,7 @@ public class TsRsDelayService {
                             @Qualifier("rcs2JdbcTemplate") JdbcTemplate rcs2JdbcTemplate) {
         this.newAuthDbJdbcTemplate = newAuthDbJdbcTemplate;
         this.alertemmaJdbcTemplate = alertemmaJdbcTemplate;
+        this.smrsJdbcTemplate = smrsJdbcTemplate;
         this.unirs1JdbcTemplate = unirs1JdbcTemplate;
         this.unirs2JdbcTemplate = unirs2JdbcTemplate;
         this.unirs3JdbcTemplate = unirs3JdbcTemplate;
@@ -161,6 +164,11 @@ public class TsRsDelayService {
                         " FROM mt_tran " +
                         " WHERE tran_status = '2' AND tran_recvdate >= DATE_ADD(TIMESTAMP(CURRENT_TIME), INTERVAL -1 HOUR) AND TIMESTAMPDIFF(SECOND,tran_recvdate ,tran_rssentdate) > 60";
 
+        resultList.add(smrsJdbcTemplate.queryForObject(selectQuery, (rs, i) -> new RsCountDTO(
+                "smrs",
+                rs.getLong("delaycnt")
+        )));
+
         resultList.add(unirs1JdbcTemplate.queryForObject(selectQuery, (rs, i) -> new RsCountDTO(
                 "unirs1",
                 rs.getLong("delaycnt")
@@ -182,22 +190,22 @@ public class TsRsDelayService {
         )));
 
         resultList.add(grs1JdbcTemplate.queryForObject(selectQuery, (rs, i) -> new RsCountDTO(
-                "grs1",
+                "wngrs01",
                 rs.getLong("delaycnt")
         )));
 
         resultList.add(grs2JdbcTemplate.queryForObject(selectQuery, (rs, i) -> new RsCountDTO(
-                "grs2",
+                "wngrs02",
                 rs.getLong("delaycnt")
         )));
 
         resultList.add(rcs1JdbcTemplate.queryForObject(selectQuery, (rs, i) -> new RsCountDTO(
-                "rcs1",
+                "rcsrs1",
                 rs.getLong("delaycnt")
         )));
 
         resultList.add(rcs2JdbcTemplate.queryForObject(selectQuery, (rs, i) -> new RsCountDTO(
-                "rcs2",
+                "rcsrs2",
                 rs.getLong("delaycnt")
         )));
 

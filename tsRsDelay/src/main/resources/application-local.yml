@@ -10,6 +10,11 @@ spring:
       jdbc-url: jdbc:mysql://172.16.0.140:3306/auth?serverTimezone=Asia/Seoul&useSSL=false
       username: unimoa
       password: pwunimoa
+    smrs:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://172.16.0.140:3306/smrs?serverTimezone=Asia/Seoul&useSSL=false
+      username: unimoa
+      password: pwunimoa
     unirs1:
       driver-class-name: com.mysql.cj.jdbc.Driver
       jdbc-url: jdbc:mysql://172.16.0.140:3306/unirs?serverTimezone=Asia/Seoul&useSSL=false
@@ -28,11 +33,6 @@ spring:
     unirs4:
       driver-class-name: com.mysql.cj.jdbc.Driver
       jdbc-url: jdbc:mysql://172.16.0.140:3306/unirs?serverTimezone=Asia/Seoul&useSSL=false
-      username: unimoa
-      password: pwunimoa
-    smrs:
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      jdbc-url: jdbc:mysql://172.16.0.140:3306/smrs?serverTimezone=Asia/Seoul&useSSL=false
       username: unimoa
       password: pwunimoa
     grs1:
