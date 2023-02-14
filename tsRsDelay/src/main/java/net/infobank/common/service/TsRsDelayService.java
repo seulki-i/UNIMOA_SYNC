@@ -93,62 +93,64 @@ public class TsRsDelayService {
 
         String tableDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMM"));
 
-        for (AlertInfoDTO alert : list) {
-            for (RsCountDTO rsData : rsMtTranList()) {
-                if (rsData.getCount() > 10000) {
-                    String alertInsertCheck = "Y";
-                    String alertInsertString = "[" + rsData.getRsId() + " " + NumberFormat.getInstance().format(rsData.getCount()) + "]";
+        if (list.size() > 0) {
+            for (AlertInfoDTO alert : list) {
+                for (RsCountDTO rsData : rsMtTranList()) {
+                    if (rsData.getCount() > 10000) {
+                        String alertInsertCheck = "Y";
+                        String alertInsertString = "[" + rsData.getRsId() + " " + NumberFormat.getInstance().format(rsData.getCount()) + "]";
 
-                    logger.info("알람발생여부 : " + alertInsertCheck + " : " + alert.getId() + "(" + alert.getKey() + ") : TS>RS Wait : " + alertInsertString);
+                        logger.info("알람발생여부 : " + alertInsertCheck + " : " + alert.getId() + "(" + alert.getKey() + ") : TS>RS Wait : " + alertInsertString);
 
-                    String insertQuery =
-                            "INSERT INTO alertlog_" + tableDate + " (alertinfo_key, emma_key, alert_recvtime, alert_send, alert_id, alert_code, fault_type, fault_value) " +
-                                    " VALUES (?,?,?,?,?,?,?,?)";
+                        String insertQuery =
+                                "INSERT INTO alertlog_" + tableDate + " (alertinfo_key, emma_key, alert_recvtime, alert_send, alert_id, alert_code, fault_type, fault_value) " +
+                                        " VALUES (?,?,?,?,?,?,?,?)";
 
-                    KeyHolder keyHolder = new GeneratedKeyHolder();
+                        KeyHolder keyHolder = new GeneratedKeyHolder();
 
-                    PreparedStatementCreator preparedStatementCreator = (connection) -> {
-                        PreparedStatement ps = connection.prepareStatement(insertQuery, new String[]{"alertinfo_key"});
-                        ps.setInt(1, alert.getKey());
-                        ps.setString(2, "");
-                        ps.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
-                        ps.setString(4, "N");
-                        ps.setString(5, rsData.getRsId());
-                        ps.setInt(6, alert.getCode());
-                        ps.setString(7, alert.getFaultType());
-                        ps.setInt(8, Math.toIntExact(rsData.getCount()));
-                        return ps;
-                    };
+                        PreparedStatementCreator preparedStatementCreator = (connection) -> {
+                            PreparedStatement ps = connection.prepareStatement(insertQuery, new String[]{"alertinfo_key"});
+                            ps.setInt(1, alert.getKey());
+                            ps.setString(2, "");
+                            ps.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
+                            ps.setString(4, "N");
+                            ps.setString(5, rsData.getRsId());
+                            ps.setInt(6, alert.getCode());
+                            ps.setString(7, alert.getFaultType());
+                            ps.setInt(8, Math.toIntExact(rsData.getCount()));
+                            return ps;
+                        };
 
-                    newAuthDbJdbcTemplate.update(preparedStatementCreator, keyHolder);
+                        newAuthDbJdbcTemplate.update(preparedStatementCreator, keyHolder);
 
-                    long alertLogKey = keyHolder.getKey().longValue();
+                        long alertLogKey = keyHolder.getKey().longValue();
 
-                    String alertEmmaKey = alert.getKey() + "_" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+                        String alertEmmaKey = alert.getKey() + "_" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
 
-                    //문자 메시지 보내는 조건 조회
-                    String smsSendCheck = smsSendYn(alert.getRepeat(), alert.getSendCount(), alert.getSendTime(), alert.getPeriod(), alert.getAllow());
+                        //문자 메시지 보내는 조건 조회
+                        String smsSendCheck = smsSendYn(alert.getRepeat(), alert.getSendCount(), alert.getSendTime(), alert.getPeriod(), alert.getAllow());
 
-                    logger.info("1차 : " + smsSendCheck);
+                        logger.info("1차 : " + smsSendCheck);
 
-                    if (smsSendCheck.equals("Y")) {
-                        String sendMessage = sendMessage(alert.getCode(), alert.getFaultType(), "", alertInsertString);
+                        if (smsSendCheck.equals("Y")) {
+                            String sendMessage = sendMessage(alert.getCode(), alert.getFaultType(), "", alertInsertString);
 
-                        //수신할 대상 조회
-                        String selectQuery2 =
-                                "SELECT alert_recipient FROM alert_recipient WHERE alertinfo_key = " + alert.getKey();
+                            //수신할 대상 조회
+                            String selectQuery2 =
+                                    "SELECT alert_recipient FROM alert_recipient WHERE alertinfo_key = " + alert.getKey();
 
-                        List<String> userList = new ArrayList<>(newAuthDbJdbcTemplate.query(selectQuery2, (rs, i) ->
-                                rs.getString("alert_recipient")));
+                            List<String> userList = new ArrayList<>(newAuthDbJdbcTemplate.query(selectQuery2, (rs, i) ->
+                                    rs.getString("alert_recipient")));
 
-                        for (String number : userList) {
-                            smsSendAction(number, alert.getCallback(), sendMessage, alertEmmaKey);
+                            for (String number : userList) {
+                                smsSendAction(number, alert.getCallback(), sendMessage, alertEmmaKey);
+                            }
+
+                            //발송 후 alertinfo update
+                            alertInfoUpdate(alert.getKey(), tableDate, alertEmmaKey, alertLogKey);
+
+                            logger.info("실제 알람여부 : " + smsSendCheck + "(" + sendMessage + ")");
                         }
-
-                        //발송 후 alertinfo update
-                        alertInfoUpdate(alert.getKey(), tableDate, alertEmmaKey, alertLogKey);
-
-                        logger.info("실제 알람여부 : " + smsSendCheck + "(" + sendMessage + ")");
                     }
                 }
             }
