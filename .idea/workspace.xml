@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e883ec2-b17f-45af-97af-124b262027d1" name="Changes" comment="tsRsDelay 수정">
+    <list default="true" id="4e883ec2-b17f-45af-97af-124b262027d1" name="Changes" comment="tsRsWait 수정">
       <change afterPath="$PROJECT_DIR$/queuena/src/main/java/net/infobank/QueueNaApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/queuena/src/main/java/net/infobank/common/CommandLineAppStartupRunner.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/queuena/src/main/java/net/infobank/common/config/AlertEmmaDataSourceConfig.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/queuena/src/main/java/net/infobank/common/config/Grs1DataSourceConfig.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/queuena/src/main/java/net/infobank/common/config/Grs2DataSourceConfig.java" afterDir="false" />
@@ -17,12 +18,16 @@
       <change afterPath="$PROJECT_DIR$/queuena/src/main/java/net/infobank/common/config/Unirs2DataSourceConfig.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/queuena/src/main/java/net/infobank/common/config/Unirs3DataSourceConfig.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/queuena/src/main/java/net/infobank/common/config/Unirs4DataSourceConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/queuena/src/main/java/net/infobank/common/dto/AlertInfoDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/queuena/src/main/java/net/infobank/common/dto/MessageDTO.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/queuena/src/main/java/net/infobank/common/dto/QueSessionDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/queuena/src/main/java/net/infobank/common/dto/QueueNaDTO.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/queuena/src/main/java/net/infobank/common/service/QueueNaService.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/queuena/src/main/resources/application-local.yml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/queuena/src/main/resources/application-release.yml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/queuena/src/main/resources/logback.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moStatus/src/main/java/net/infobank/common/service/MoStatusService.java" beforeDir="false" afterPath="$PROJECT_DIR$/moStatus/src/main/java/net/infobank/common/service/MoStatusService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -139,10 +144,10 @@
       <recent name="C:\PROJECT\UNIMOA_SYNC\tsRsDelay\src\main\resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="net.infobank.common.config" />
-      <recent name="net.infobank" />
       <recent name="net.infobank.common.dto" />
       <recent name="net.infobank.common" />
+      <recent name="net.infobank.common.config" />
+      <recent name="net.infobank" />
       <recent name="net.infobank.common.service" />
     </key>
   </component>
@@ -153,7 +158,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.UNIMOA_SYNC:moStatus [bootJar]">
+  <component name="RunManager" selected="Spring Boot.QueueNaApplication">
     <configuration name="UNIMOA_SYNC:moStatus [bootJar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -225,6 +230,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="QueueNaApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="ACTIVE_PROFILES" value="local" />
+      <module name="UNIMOA_SYNC.queuena.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="net.infobank.QueueNaApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TsInsertApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="ACTIVE_PROFILES" value="local" />
       <module name="UNIMOA_SYNC.tsInsert.main" />
@@ -260,6 +273,7 @@
       <item itemvalue="Gradle.UNIMOA_SYNC:moStatus [bootJar]" />
       <item itemvalue="Gradle.UNIMOA_SYNC:moStatus [clean]" />
       <item itemvalue="Gradle.UNIMOA_SYNC:zeroize [bootJar]" />
+      <item itemvalue="Spring Boot.QueueNaApplication" />
       <item itemvalue="Spring Boot.TsRsWaitApplication" />
       <item itemvalue="Spring Boot.TsInsertApplication" />
       <item itemvalue="Spring Boot.TsRsDelayApplication" />
@@ -287,7 +301,7 @@
       <workItem from="1674804781749" duration="2470000" />
       <workItem from="1674807271252" duration="95476000" />
       <workItem from="1675919792385" duration="1080000" />
-      <workItem from="1675920878270" duration="32031000" />
+      <workItem from="1675920878270" duration="42794000" />
     </task>
     <task id="LOCAL-00001" summary="zeroize">
       <created>1675068463240</created>
@@ -457,7 +471,35 @@
       <option name="project" value="LOCAL" />
       <updated>1676352535775</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="moStatus.">
+      <created>1676352718978</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1676352718978</updated>
+    </task>
+    <task id="LOCAL-00026" summary="zeroize 수정">
+      <created>1676358509328</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1676358509328</updated>
+    </task>
+    <task id="LOCAL-00027" summary="tsRsDelay 수정">
+      <created>1676358578736</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1676358578736</updated>
+    </task>
+    <task id="LOCAL-00028" summary="tsRsWait 수정">
+      <created>1676358706650</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1676358706650</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -492,7 +534,11 @@
     <MESSAGE value="tsRsWait" />
     <MESSAGE value="moStatus dto 수정" />
     <MESSAGE value="tsRsDelay 디비 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="tsRsDelay 디비 추가" />
+    <MESSAGE value="moStatus." />
+    <MESSAGE value="zeroize 수정" />
+    <MESSAGE value="tsRsDelay 수정" />
+    <MESSAGE value="tsRsWait 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="tsRsWait 수정" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
