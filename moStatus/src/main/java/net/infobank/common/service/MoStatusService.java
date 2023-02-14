@@ -46,6 +46,8 @@ public class MoStatusService {
         logger.info("START");
 
         for (MoDTO mo : moData()) {
+            logger.info(mo.toString());
+
             String alertEmmaKey = "1_" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
             String sendMessage = mo.getMoId() + " " + mo.getTsCode() + "[" + mo.getTsId() + "] " + mo.getLastUpdateDateTime() + " - " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("MM/dd HH:mm"));
             logger.info(sendMessage);
@@ -70,7 +72,8 @@ public class MoStatusService {
                                     "alert_sendtime = NOW() " +
                                     "WHERE tscode = '" + mo.getTsCode() + "' AND tsid = '" + mo.getTsId() + "'";
 
-                    newAuthDbJdbcTemplate.update(updateQuery);
+//                    newAuthDbJdbcTemplate.update(updateQuery);
+                    logger.info("있을때 : " + updateQuery);
 
                     for (String number : recipientList()) {
                         smsSendAction(number, "0316281500", sendMessage, alertEmmaKey);
@@ -85,7 +88,8 @@ public class MoStatusService {
                                 ") VALUES ( " +
                                 "'" + mo.getMoId() + "', '" + mo.getTsCode() + "', '" + mo.getTsId() + "', '" + mo.getLastUpdateDateTime() + "', SYSDATE(), 1, SYSDATE())";
 
-                newAuthDbJdbcTemplate.update(insertQuery);
+//                newAuthDbJdbcTemplate.update(insertQuery);
+                logger.info("없을때 : " +insertQuery);
 
                 smsSendAction("01072719753", "0316281500", sendMessage, alertEmmaKey); //김현빈
 
@@ -138,11 +142,16 @@ public class MoStatusService {
                         ") VALUES ( " +
                         "'" + alertEmmaKey + "', 'S', SYSDATE(), '" + sendMessage + "', '" + callback + "', '0', '1', 'N', '" + recipient + "', '82')";
 
-        int update = alertEmmaJdbcTemplate.update(insertQuery);
+        logger.info("문자전송");
+        logger.info(insertQuery);
 
-        if (update == 1) {
-            result = "Y";
-        }
-        return result;
+//        int update = alertEmmaJdbcTemplate.update(insertQuery);
+//
+//        if (update == 1) {
+//            result = "Y";
+//        }
+//        return result;
+
+        return "Y";
     }
 }

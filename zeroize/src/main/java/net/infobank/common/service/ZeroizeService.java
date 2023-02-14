@@ -31,7 +31,7 @@ public class ZeroizeService {
      * 알람발송 카운트가 풀일때 설정된 시간이 지나면 다시 알람을 발송할 수 있도록 alert_sendcnt를 0으로 초기화한다
      */
     public void update() {
-        logger.info("start");
+        logger.info("START");
         LocalDateTime startTime = LocalDateTime.now();
 
         String selectQuery =
@@ -45,19 +45,21 @@ public class ZeroizeService {
                 rs.getString("alert_id")
         )));
 
-        for (AlertInfoDTO dto : list) {
-            long between = ChronoUnit.MINUTES.between(dto.getSendTime(), LocalDateTime.now());
-            String checkUpdate = "N";
+        if(list.size() > 0) {
+            for (AlertInfoDTO dto : list) {
+                long between = ChronoUnit.MINUTES.between(dto.getSendTime(), LocalDateTime.now());
+                String checkUpdate = "N";
 
-            if (between >= dto.getReset()) { // 리셋시간(분)보다 더 지났다면
-                checkUpdate = "Y";
-                String updateQuery = "UPDATE alertinfo SET alert_sendcnt = 0 WHERE alertinfo_key = '" + dto.getKey() + "'";
+                if (between >= dto.getReset()) { // 리셋시간(분)보다 더 지났다면
+                    checkUpdate = "Y";
+                    String updateQuery = "UPDATE alertinfo SET alert_sendcnt = 0 WHERE alertinfo_key = '" + dto.getKey() + "'";
 
-                newAuthDbJdbcTemplate.update(updateQuery);
+                    newAuthDbJdbcTemplate.update(updateQuery);
+                }
+
+                logger.info("calcTime : " + between + ", sendTime : " + dto.getSendTime() + ", key : " + dto.getKey()
+                        + ", alert_id : " + dto.getId() + ", UPDATE : " + checkUpdate);
             }
-
-            logger.info("calcTime : " + between + ", sendTime : " + dto.getSendTime() + ", key : " + dto.getKey()
-                    + ", alert_id : " + dto.getId() + ", UPDATE : " + checkUpdate);
         }
 
         LocalDateTime endTime = LocalDateTime.now();
@@ -65,6 +67,6 @@ public class ZeroizeService {
         long between = ChronoUnit.SECONDS.between(startTime, endTime);
         logger.info(" : " + between);
 
-        logger.info("end");
+        logger.info("END");
     }
 }
