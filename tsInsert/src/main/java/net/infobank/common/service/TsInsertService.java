@@ -141,7 +141,7 @@ public class TsInsertService {
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
-        //TODO alert_sendcnt, alert_recvtime 날짜 0000-00-00 00:00:00 으로 넣을 수 없음
+        //TODO alert_recvtime, alert_sendcnt 날짜 0000-00-00 00:00:00 으로 넣을 수 없음
         PreparedStatementCreator preparedStatementCreator = (connection) -> {
             PreparedStatement prepareStatement = connection.prepareStatement(insertQuery, new String[]{"alertinfo_key"});
             prepareStatement.setInt(1, 1003);
@@ -151,8 +151,8 @@ public class TsInsertService {
             prepareStatement.setInt(5, 0);
             prepareStatement.setInt(6, 20);
             prepareStatement.setInt(7, 0);
-            prepareStatement.setTimestamp(8, Timestamp.valueOf(LocalDateTime.now()));
-            prepareStatement.setTimestamp(9, Timestamp.valueOf(LocalDateTime.now()));
+            prepareStatement.setTimestamp(8, Timestamp.valueOf("1970-01-01 00:00:00"));
+            prepareStatement.setTimestamp(9, Timestamp.valueOf("1970-01-01 00:00:00"));
             prepareStatement.setTimestamp(10, Timestamp.valueOf(LocalDateTime.now()));
             prepareStatement.setString(11, "AUTO");
             prepareStatement.setTimestamp(12, Timestamp.valueOf(LocalDateTime.now()));
@@ -186,7 +186,7 @@ public class TsInsertService {
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
-        //TODO alert_sendcnt, alert_recvtime 날짜 0000-00-00 00:00:00 으로 넣을 수 없음
+        //TODO alert_recvtime, alert_sendcnt 날짜 0000-00-00 00:00:00 으로 넣을 수 없음
         PreparedStatementCreator preparedStatementCreator = (connection) -> {
             PreparedStatement prepareStatement = connection.prepareStatement(insertQuery, new String[]{"alertinfo_key"});
             prepareStatement.setInt(1, 1003);
@@ -196,8 +196,8 @@ public class TsInsertService {
             prepareStatement.setInt(5, 5);
             prepareStatement.setInt(6, 10);
             prepareStatement.setInt(7, 0);
-            prepareStatement.setTimestamp(8, Timestamp.valueOf(LocalDateTime.now()));
-            prepareStatement.setTimestamp(9, Timestamp.valueOf(LocalDateTime.now()));
+            prepareStatement.setTimestamp(8, Timestamp.valueOf("1970-01-01 00:00:00"));
+            prepareStatement.setTimestamp(9, Timestamp.valueOf("1970-01-01 00:00:00"));
             prepareStatement.setTimestamp(10, Timestamp.valueOf(LocalDateTime.now()));
             prepareStatement.setString(11, "AUTO");
             prepareStatement.setTimestamp(12, Timestamp.valueOf(LocalDateTime.now()));

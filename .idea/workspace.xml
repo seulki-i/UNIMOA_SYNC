@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4e883ec2-b17f-45af-97af-124b262027d1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsRsDelay/src/main/java/net/infobank/common/service/TsRsDelayService.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsRsDelay/src/main/java/net/infobank/common/service/TsRsDelayService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsInsert/src/main/java/net/infobank/common/service/TsInsertService.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsInsert/src/main/java/net/infobank/common/service/TsInsertService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -281,7 +281,7 @@
       <workItem from="1675919792385" duration="1080000" />
       <workItem from="1675920878270" duration="48340000" />
       <workItem from="1676507941485" duration="1727000" />
-      <workItem from="1676593956426" duration="15089000" />
+      <workItem from="1676593956426" duration="17399000" />
     </task>
     <task id="LOCAL-00001" summary="zeroize">
       <created>1675068463240</created>
@@ -500,7 +500,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676613658515</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="tsRsDelay 수정">
+      <created>1676615558758</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1676615558758</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -537,11 +544,11 @@
     <MESSAGE value="tsRsDelay 디비 추가" />
     <MESSAGE value="moStatus." />
     <MESSAGE value="zeroize 수정" />
-    <MESSAGE value="tsRsDelay 수정" />
     <MESSAGE value="queuena" />
     <MESSAGE value="queuena 수정" />
     <MESSAGE value="tsRsWait 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="tsRsWait 수정" />
+    <MESSAGE value="tsRsDelay 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="tsRsDelay 수정" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
