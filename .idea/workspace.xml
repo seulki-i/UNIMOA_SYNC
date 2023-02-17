@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e883ec2-b17f-45af-97af-124b262027d1" name="Changes" comment="queuena 수정">
+    <list default="true" id="4e883ec2-b17f-45af-97af-124b262027d1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/tsRsWait/src/main/java/net/infobank/common/config/SmrsDataSourceConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/queuena/src/main/java/net/infobank/common/service/QueueNaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/queuena/src/main/java/net/infobank/common/service/QueueNaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsRsWait/src/main/java/net/infobank/common/service/TsRsWaitService.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsRsWait/src/main/java/net/infobank/common/service/TsRsWaitService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsRsWait/src/main/resources/application-local.yml" beforeDir="false" afterPath="$PROJECT_DIR$/tsRsWait/src/main/resources/application-local.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsRsWait/src/main/resources/application-release.yml" beforeDir="false" afterPath="$PROJECT_DIR$/tsRsWait/src/main/resources/application-release.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,9 +125,9 @@
       <recent name="C:\PROJECT\UNIMOA_SYNC\tsRsDelay\src\main\resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="net.infobank.common.config" />
       <recent name="net.infobank.common.dto" />
       <recent name="net.infobank.common" />
-      <recent name="net.infobank.common.config" />
       <recent name="net.infobank" />
       <recent name="net.infobank.common.service" />
     </key>
@@ -281,7 +284,7 @@
       <workItem from="1675919792385" duration="1080000" />
       <workItem from="1675920878270" duration="48340000" />
       <workItem from="1676507941485" duration="1727000" />
-      <workItem from="1676593956426" duration="11520000" />
+      <workItem from="1676593956426" duration="13671000" />
     </task>
     <task id="LOCAL-00001" summary="zeroize">
       <created>1675068463240</created>
@@ -486,7 +489,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676363716730</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="queuena 수정">
+      <created>1676610682197</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1676610682197</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -526,7 +536,8 @@
     <MESSAGE value="tsRsDelay 수정" />
     <MESSAGE value="tsRsWait 수정" />
     <MESSAGE value="queuena" />
-    <option name="LAST_COMMIT_MESSAGE" value="queuena" />
+    <MESSAGE value="queuena 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="queuena 수정" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

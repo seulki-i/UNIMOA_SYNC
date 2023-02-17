@@ -32,6 +32,7 @@ public class TsRsWaitService {
 
     private final JdbcTemplate newAuthDbJdbcTemplate;
     private final JdbcTemplate alertemmaJdbcTemplate;
+    private final JdbcTemplate smrsJdbcTemplate;
     private final JdbcTemplate unirs1JdbcTemplate;
     private final JdbcTemplate unirs2JdbcTemplate;
     private final JdbcTemplate unirs3JdbcTemplate;
@@ -43,6 +44,7 @@ public class TsRsWaitService {
 
     public TsRsWaitService(@Qualifier("newAuthDbJdbcTemplate") JdbcTemplate newAuthDbJdbcTemplate,
                            @Qualifier("alertemmaJdbcTemplate") JdbcTemplate alertemmaJdbcTemplate,
+                           @Qualifier("smrsJdbcTemplate") JdbcTemplate smrsJdbcTemplate,
                            @Qualifier("unirs1JdbcTemplate") JdbcTemplate unirs1JdbcTemplate,
                            @Qualifier("unirs2JdbcTemplate") JdbcTemplate unirs2JdbcTemplate,
                            @Qualifier("unirs3JdbcTemplate") JdbcTemplate unirs3JdbcTemplate,
@@ -53,6 +55,7 @@ public class TsRsWaitService {
                            @Qualifier("rcs2JdbcTemplate") JdbcTemplate rcs2JdbcTemplate) {
         this.newAuthDbJdbcTemplate = newAuthDbJdbcTemplate;
         this.alertemmaJdbcTemplate = alertemmaJdbcTemplate;
+        this.smrsJdbcTemplate = smrsJdbcTemplate;
         this.unirs1JdbcTemplate = unirs1JdbcTemplate;
         this.unirs2JdbcTemplate = unirs2JdbcTemplate;
         this.unirs3JdbcTemplate = unirs3JdbcTemplate;
@@ -66,6 +69,7 @@ public class TsRsWaitService {
     public void insert() {
         logger.info("START");
 
+        //alertinfo 데이터
         String selectQuery =
                 "SELECT alertinfo_key, alert_code, allow, alert_id, alert_callback, fault_type, alert_repeat, alert_period, alert_sendcnt, alert_sendtime " +
                         "FROM alertinfo WHERE alert_code = '1002' AND fault_type = '10021' AND allow IN ('Y', 'P') " +
@@ -84,9 +88,9 @@ public class TsRsWaitService {
                 rs.getTimestamp("alert_sendtime").toLocalDateTime()
         )));
 
-        String tableDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMM"));
-
         if (list.size() > 0) {
+            String tableDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMM"));
+
             for (AlertInfoDTO alert : list) {
                 for (RsCountDTO rsData : rsMtTranList()) {
                     if (rsData.getCount() > 1000) {
@@ -102,7 +106,7 @@ public class TsRsWaitService {
                         KeyHolder keyHolder = new GeneratedKeyHolder();
 
                         PreparedStatementCreator preparedStatementCreator = (connection) -> {
-                            PreparedStatement ps = connection.prepareStatement(insertQuery, new String[]{"alertinfo_key"});
+                            PreparedStatement ps = connection.prepareStatement(insertQuery, new String[]{"alert_seq"});
                             ps.setInt(1, alert.getKey());
                             ps.setString(2, "");
                             ps.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
@@ -118,7 +122,7 @@ public class TsRsWaitService {
 
                         long alertLogKey = keyHolder.getKey().longValue();
 
-                        String alertEmmaKey = alert.getKey() + "_" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+                        String alertEmmaKey = alertLogKey + "_" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
 
                         //문자 메시지 보내는 조건 조회
                         String smsSendCheck = smsSendYn(alert.getRepeat(), alert.getSendCount(), alert.getSendTime(), alert.getPeriod(), alert.getAllow());
@@ -128,14 +132,8 @@ public class TsRsWaitService {
                         if (smsSendCheck.equals("Y")) {
                             String sendMessage = sendMessage(alert.getCode(), alert.getFaultType(), "", alertInsertString);
 
-                            //수신할 대상 조회
-                            String selectQuery2 =
-                                    "SELECT alert_recipient FROM alert_recipient WHERE alertinfo_key = " + alert.getKey();
-
-                            List<String> userList = new ArrayList<>(newAuthDbJdbcTemplate.query(selectQuery2, (rs, i) ->
-                                    rs.getString("alert_recipient")));
-
-                            for (String number : userList) {
+                            //문자 전송
+                            for (String number : recipientList(alert.getKey())) {
                                 smsSendAction(number, alert.getCallback(), sendMessage, alertEmmaKey);
                             }
 
@@ -159,6 +157,11 @@ public class TsRsWaitService {
                         " FROM mt_tran " +
                         " WHERE tran_status = '1' AND tran_recvdate >= DATE_ADD(TIMESTAMP(CURRENT_DATE), INTERVAL -1 DAY) AND TIMESTAMPDIFF(SECOND, tran_recvdate, SYSDATE()) > 300";
 
+        resultList.add(smrsJdbcTemplate.queryForObject(selectQuery, (rs, i) -> new RsCountDTO(
+                "smrs",
+                rs.getLong("delaycnt")
+        )));
+
         resultList.add(unirs1JdbcTemplate.queryForObject(selectQuery, (rs, i) -> new RsCountDTO(
                 "unirs1",
                 rs.getLong("delaycnt")
@@ -180,26 +183,33 @@ public class TsRsWaitService {
         )));
 
         resultList.add(grs1JdbcTemplate.queryForObject(selectQuery, (rs, i) -> new RsCountDTO(
-                "grs1",
+                "wngrs01",
                 rs.getLong("delaycnt")
         )));
 
         resultList.add(grs2JdbcTemplate.queryForObject(selectQuery, (rs, i) -> new RsCountDTO(
-                "grs2",
+                "wngrs02",
                 rs.getLong("delaycnt")
         )));
 
         resultList.add(rcs1JdbcTemplate.queryForObject(selectQuery, (rs, i) -> new RsCountDTO(
-                "rcs1",
+                "rcsrs1",
                 rs.getLong("delaycnt")
         )));
 
         resultList.add(rcs2JdbcTemplate.queryForObject(selectQuery, (rs, i) -> new RsCountDTO(
-                "rcs2",
+                "rcsrs2",
                 rs.getLong("delaycnt")
         )));
 
         return resultList;
+    }
+
+    public List<String> recipientList(int key) {
+        String selectQuery =
+                "SELECT alert_recipient FROM alert_recipient WHERE alertinfo_key = " + key;
+
+        return new ArrayList<>(newAuthDbJdbcTemplate.query(selectQuery, (rs, i) -> rs.getString("alert_recipient")));
     }
 
     public String smsSendYn(int repeat, int sendCount, LocalDateTime sendTime, int period, String allow) {
@@ -241,8 +251,8 @@ public class TsRsWaitService {
                 rs.getString("m3")
         ));
 
-        return (message.getM1() + " " + message.getM2()).replace("%s", message1) +
-                " " + message.getM3().replace("%d", message2) + " " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("MM/dd HH:mm"));
+        return message.getM1().replace("%s", message1) + " " + message.getM2() + " " + message.getM3().replace("%d", message2) +
+                " " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("MM/dd HH:mm"));
     }
 
     public String smsSendAction(String recipient, String callback, String smsSendMessage, String alertEmmaKey) {

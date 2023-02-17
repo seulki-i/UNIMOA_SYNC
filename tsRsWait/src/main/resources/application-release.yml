@@ -10,6 +10,11 @@ spring:
       jdbc-url: jdbc:mysql://10.10.11.32:3306/alertemma_db?serverTimezone=Asia/Seoul&useSSL=false&zeroDateTimeBehavior=convertToNull
       username: newgw
       password: pwnewgw
+    smrs:
+      driver-class-name: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://211.233.34.13:3306/SMRSDB?serverTimezone=Asia/Seoul&useSSL=false
+      username: newgw
+      password: pwnewgw
     unirs1: # 5.7
       driver-class-name: com.mysql.cj.jdbc.Driver
       jdbc-url: jdbc:mysql://10.10.11.180:3306/unirsdb01?serverTimezone=Asia/Seoul&useSSL=false
