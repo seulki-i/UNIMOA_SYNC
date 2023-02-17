@@ -56,6 +56,6 @@ spring:
       username: newgw
       password: pwnewgw
 server:
-  port: 19012
+  port: 19018
 logging:
   config: classpath:logback.xml

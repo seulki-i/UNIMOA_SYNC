@@ -5,8 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e883ec2-b17f-45af-97af-124b262027d1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/session/src/main/java/net/infobank/SessionApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/session/src/main/resources/application-local.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/session/src/main/resources/application-release.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/session/src/main/resources/logback.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsInsert/src/main/java/net/infobank/common/service/TsInsertService.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsInsert/src/main/java/net/infobank/common/service/TsInsertService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/moStatus/src/main/resources/application-local.yml" beforeDir="false" afterPath="$PROJECT_DIR$/moStatus/src/main/resources/application-local.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/moStatus/src/main/resources/application-release.yml" beforeDir="false" afterPath="$PROJECT_DIR$/moStatus/src/main/resources/application-release.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/queuena/src/main/resources/application-local.yml" beforeDir="false" afterPath="$PROJECT_DIR$/queuena/src/main/resources/application-local.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/queuena/src/main/resources/application-release.yml" beforeDir="false" afterPath="$PROJECT_DIR$/queuena/src/main/resources/application-release.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsInsert/src/main/resources/application-local.yml" beforeDir="false" afterPath="$PROJECT_DIR$/tsInsert/src/main/resources/application-local.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsInsert/src/main/resources/application-release.yml" beforeDir="false" afterPath="$PROJECT_DIR$/tsInsert/src/main/resources/application-release.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsRsDelay/src/main/resources/application-local.yml" beforeDir="false" afterPath="$PROJECT_DIR$/tsRsDelay/src/main/resources/application-local.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsRsDelay/src/main/resources/application-release.yml" beforeDir="false" afterPath="$PROJECT_DIR$/tsRsDelay/src/main/resources/application-release.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsRsWait/src/main/resources/application-local.yml" beforeDir="false" afterPath="$PROJECT_DIR$/tsRsWait/src/main/resources/application-local.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsRsWait/src/main/resources/application-release.yml" beforeDir="false" afterPath="$PROJECT_DIR$/tsRsWait/src/main/resources/application-release.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zeroize/src/main/resources/application-local.yml" beforeDir="false" afterPath="$PROJECT_DIR$/zeroize/src/main/resources/application-local.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zeroize/src/main/resources/application-release.yml" beforeDir="false" afterPath="$PROJECT_DIR$/zeroize/src/main/resources/application-release.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,50 +99,50 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;database.data.extractors.current.export.id&quot;: &quot;SQL Inserts&quot;,
-    &quot;database.data.extractors.current.id&quot;: &quot;SQL Inserts&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/PROJECT/UNIMOA_SYNC&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;SQL Resolution Scopes&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;e74472d2c542ceae58c469e290e84904&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "database.data.extractors.current.export.id": "SQL Inserts",
+    "database.data.extractors.current.id": "SQL Inserts",
+    "jdk.selected.JAVA_MODULE": "1.8",
+    "last_opened_file_path": "C:/PROJECT/UNIMOA_SYNC/session/src/main/resources",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "SQL Resolution Scopes",
+    "spring.configuration.checksum": "e74472d2c542ceae58c469e290e84904",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\PROJECT\UNIMOA_SYNC\session\src\main\resources" />
       <recent name="C:\PROJECT\UNIMOA_SYNC\queuena\src\main\java\net\infobank\common\config" />
       <recent name="C:\PROJECT\UNIMOA_SYNC\queuena\src\main\resources" />
       <recent name="C:\PROJECT\UNIMOA_SYNC\tsRsWait\src\main\java\net\infobank\common\config" />
       <recent name="C:\PROJECT\UNIMOA_SYNC\tsRsWait\src\main\resources" />
-      <recent name="C:\PROJECT\UNIMOA_SYNC\tsRsDelay\src\main\resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="net.infobank" />
       <recent name="net.infobank.common.config" />
       <recent name="net.infobank.common.dto" />
       <recent name="net.infobank.common" />
-      <recent name="net.infobank" />
       <recent name="net.infobank.common.service" />
     </key>
   </component>
@@ -281,7 +298,7 @@
       <workItem from="1675919792385" duration="1080000" />
       <workItem from="1675920878270" duration="48340000" />
       <workItem from="1676507941485" duration="1727000" />
-      <workItem from="1676593956426" duration="17399000" />
+      <workItem from="1676593956426" duration="18829000" />
     </task>
     <task id="LOCAL-00001" summary="zeroize">
       <created>1675068463240</created>
@@ -507,7 +524,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676615558758</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="tsInsert 수정">
+      <created>1676617996679</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1676617996679</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -548,7 +572,8 @@
     <MESSAGE value="queuena 수정" />
     <MESSAGE value="tsRsWait 수정" />
     <MESSAGE value="tsRsDelay 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="tsRsDelay 수정" />
+    <MESSAGE value="tsInsert 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="tsInsert 수정" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

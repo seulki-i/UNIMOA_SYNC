@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/moStatus" />
             <option value="$PROJECT_DIR$/queuena" />
+            <option value="$PROJECT_DIR$/session" />
             <option value="$PROJECT_DIR$/tsInsert" />
             <option value="$PROJECT_DIR$/tsRsDelay" />
             <option value="$PROJECT_DIR$/tsRsWait" />

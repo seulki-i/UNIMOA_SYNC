@@ -6,6 +6,6 @@ spring:
       username: unimoa
       password: pwunimoa
 server:
-  port: 19015
+  port: 19021
 #logging:
 #  config: classpath:logback.xml
