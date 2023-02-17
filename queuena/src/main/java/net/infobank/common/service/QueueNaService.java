@@ -67,8 +67,9 @@ public class QueueNaService {
     }
 
     /**
-     * 각 rs에서 queinfo, sessioninfo 테이블에서 데이터를 가져온다 - updatetime이 현재시간과 차이가 60초보다 클때
+     * 각 rs에서 queinfo, sessioninfo 테이블에서 데이터를 가져온다 - updatetime이 현재시간과 차이가 60초보다 클때 n/a 값으로
      * alert_queuena 테이블의 7일이 지난 데이터는 삭제한다
+     * 각 rs에서 가져온 데이터를 alert_queuena에 저장한다 - n/a 인 값이 있으면 문자전송
      */
     public void insert() {
         logger.info("START");
@@ -109,10 +110,10 @@ public class QueueNaService {
                 rs.getTimestamp("alert_sendtime").toLocalDateTime()
         )));
 
-        if(list.size() > 0) {
+        if (list.size() > 0) {
             String tableDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMM"));
 
-            for(AlertInfoDTO alert : list) {
+            for (AlertInfoDTO alert : list) {
                 String selectQuery2 =
                         "SELECT que_server, que_name, que_updatetime FROM alert_queuena WHERE que_cnt = 'n/a' AND cnt_flag = 'Y'";
 
@@ -122,8 +123,8 @@ public class QueueNaService {
                         rs.getTimestamp("que_updatetime").toLocalDateTime()
                 ));
 
-                if(queueNaList.size() > 0) {
-                    for(QueueNaDTO queueNa : queueNaList) {
+                if (queueNaList.size() > 0) {
+                    for (QueueNaDTO queueNa : queueNaList) {
                         String alertInsertCheck = "Y";
                         String alertInsertString = queueNa.getServer() + " " + queueNa.getName() + "(" + queueNa.getUpdateDateTime() + ")";
 
@@ -131,12 +132,12 @@ public class QueueNaService {
 
                         String insertQuery2 =
                                 "INSERT INTO alertlog_" + tableDate + "(alertinfo_key, emma_key, alert_recvtime, alert_send, alert_id, alert_code, fault_type, fault_value, fault_src) " +
-                                " VALUES (?,?,?,?,?,?,?,?,?)";
+                                        " VALUES (?,?,?,?,?,?,?,?,?)";
 
                         KeyHolder keyHolder = new GeneratedKeyHolder();
 
                         PreparedStatementCreator preparedStatementCreator = (connection) -> {
-                            PreparedStatement ps = connection.prepareStatement(insertQuery2, new String[]{"alertinfo_key"});
+                            PreparedStatement ps = connection.prepareStatement(insertQuery2, new String[]{"alert_seq"});
                             ps.setInt(1, alert.getKey());
                             ps.setString(2, "");
                             ps.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
@@ -153,24 +154,18 @@ public class QueueNaService {
 
                         long alertLogKey = keyHolder.getKey().longValue();
 
-                        String alertEmmaKey = alert.getKey() + "_" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+                        String alertEmmaKey = alertLogKey + "_" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
 
                         //문자 메시지 보내는 조건 조회
                         String smsSendCheck = smsSendYn(alert.getRepeat(), alert.getSendCount(), alert.getSendTime(), alert.getPeriod(), alert.getAllow());
 
                         logger.info("1차 : " + smsSendCheck);
 
-                        if(smsSendCheck.equals("Y")) {
+                        if (smsSendCheck.equals("Y")) {
                             String sendMessage = sendMessage(alert.getCode(), alert.getFaultType(), "", alertInsertString);
 
-                            //수신할 대상 조회
-                            String selectQuery3 =
-                                    "SELECT alert_recipient FROM alert_recipient WHERE alertinfo_key = " + alert.getKey();
-
-                            List<String> userList = new ArrayList<>(newAuthDbJdbcTemplate.query(selectQuery3, (rs, i) ->
-                                    rs.getString("alert_recipient")));
-
-                            for (String number : userList) {
+                            //문자 전송
+                            for (String number : recipientList(alert.getKey())) {
                                 smsSendAction(number, alert.getCallback(), sendMessage, alertEmmaKey);
                             }
 
@@ -245,7 +240,7 @@ public class QueueNaService {
                 rs.getTimestamp("updatetime").toLocalDateTime()
         )));
 
-        resultList.addAll(grs1JdbcTemplate.query(selectQuery, (rs, i) -> new QueSessionDTO(
+        resultList.addAll(grs2JdbcTemplate.query(selectQuery, (rs, i) -> new QueSessionDTO(
                 "wngrs02",
                 rs.getString("gubun"),
                 rs.getString("quename"),
@@ -253,7 +248,7 @@ public class QueueNaService {
                 rs.getTimestamp("updatetime").toLocalDateTime()
         )));
 
-        resultList.addAll(grs1JdbcTemplate.query(selectQuery, (rs, i) -> new QueSessionDTO(
+        resultList.addAll(rcs1JdbcTemplate.query(selectQuery, (rs, i) -> new QueSessionDTO(
                 "rcsrs1",
                 rs.getString("gubun"),
                 rs.getString("quename"),
@@ -261,7 +256,7 @@ public class QueueNaService {
                 rs.getTimestamp("updatetime").toLocalDateTime()
         )));
 
-        resultList.addAll(grs1JdbcTemplate.query(selectQuery, (rs, i) -> new QueSessionDTO(
+        resultList.addAll(rcs2JdbcTemplate.query(selectQuery, (rs, i) -> new QueSessionDTO(
                 "rcsrs2",
                 rs.getString("gubun"),
                 rs.getString("quename"),
@@ -270,6 +265,13 @@ public class QueueNaService {
         )));
 
         return resultList;
+    }
+
+    public List<String> recipientList(int key) {
+        String selectQuery =
+                "SELECT alert_recipient FROM alert_recipient WHERE alertinfo_key = " + key;
+
+        return new ArrayList<>(newAuthDbJdbcTemplate.query(selectQuery, (rs, i) -> rs.getString("alert_recipient")));
     }
 
     public String smsSendYn(int repeat, int sendCount, LocalDateTime sendTime, int period, String allow) {
@@ -311,8 +313,8 @@ public class QueueNaService {
                 rs.getString("m3")
         ));
 
-        return (message.getM1() + " " + message.getM2()).replace("%s", message1) +
-                " " + message.getM3().replace("%d", message2) + " " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("MM/dd HH:mm"));
+        return message.getM1().replace("%s", message1) + " " + message.getM2() + " " + message.getM3().replace("%d", message2) +
+                " " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("MM/dd HH:mm"));
     }
 
     public String smsSendAction(String recipient, String callback, String smsSendMessage, String alertEmmaKey) {
