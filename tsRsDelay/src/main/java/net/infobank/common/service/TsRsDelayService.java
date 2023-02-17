@@ -109,7 +109,7 @@ public class TsRsDelayService {
                         KeyHolder keyHolder = new GeneratedKeyHolder();
 
                         PreparedStatementCreator preparedStatementCreator = (connection) -> {
-                            PreparedStatement ps = connection.prepareStatement(insertQuery, new String[]{"alertinfo_key"});
+                            PreparedStatement ps = connection.prepareStatement(insertQuery, new String[]{"alert_seq"});
                             ps.setInt(1, alert.getKey());
                             ps.setString(2, "");
                             ps.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
@@ -125,7 +125,7 @@ public class TsRsDelayService {
 
                         long alertLogKey = keyHolder.getKey().longValue();
 
-                        String alertEmmaKey = alert.getKey() + "_" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+                        String alertEmmaKey = alertLogKey + "_" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
 
                         //문자 메시지 보내는 조건 조회
                         String smsSendCheck = smsSendYn(alert.getRepeat(), alert.getSendCount(), alert.getSendTime(), alert.getPeriod(), alert.getAllow());
@@ -135,14 +135,8 @@ public class TsRsDelayService {
                         if (smsSendCheck.equals("Y")) {
                             String sendMessage = sendMessage(alert.getCode(), alert.getFaultType(), "", alertInsertString);
 
-                            //수신할 대상 조회
-                            String selectQuery2 =
-                                    "SELECT alert_recipient FROM alert_recipient WHERE alertinfo_key = " + alert.getKey();
-
-                            List<String> userList = new ArrayList<>(newAuthDbJdbcTemplate.query(selectQuery2, (rs, i) ->
-                                    rs.getString("alert_recipient")));
-
-                            for (String number : userList) {
+                            //문자 전송
+                            for (String number : recipientList(alert.getKey())) {
                                 smsSendAction(number, alert.getCallback(), sendMessage, alertEmmaKey);
                             }
 
@@ -214,6 +208,13 @@ public class TsRsDelayService {
         return resultList;
     }
 
+    public List<String> recipientList(int key) {
+        String selectQuery =
+                "SELECT alert_recipient FROM alert_recipient WHERE alertinfo_key = " + key;
+
+        return new ArrayList<>(newAuthDbJdbcTemplate.query(selectQuery, (rs, i) -> rs.getString("alert_recipient")));
+    }
+
     public String smsSendYn(int repeat, int sendCount, LocalDateTime sendTime, int period, String allow) {
         String result = "N";
 
@@ -253,8 +254,8 @@ public class TsRsDelayService {
                 rs.getString("m3")
         ));
 
-        return (message.getM1() + " " + message.getM2()).replace("%s", message1) +
-                " " + message.getM3().replace("%d", message2) + " " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("MM/dd HH:mm"));
+        return message.getM1().replace("%s", message1) + " " + message.getM2() + " " + message.getM3().replace("%d", message2) +
+                " " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("MM/dd HH:mm"));
     }
 
     public String smsSendAction(String recipient, String callback, String smsSendMessage, String alertEmmaKey) {
