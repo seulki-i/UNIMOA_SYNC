@@ -131,7 +131,7 @@ public class QueueNaService {
                         logger.info("알람발생여부 : " + alertInsertCheck + " : " + alert.getId() + "(" + alert.getKey() + ") : n/a : " + queueNa.getServer() + " " + queueNa.getName() + "(" + queueNa.getUpdateDateTime() + ")");
 
                         String insertQuery2 =
-                                "INSERT INTO alertlog_" + tableDate + "(alertinfo_key, emma_key, alert_recvtime, alert_send, alert_id, alert_code, fault_type, fault_value, fault_src) " +
+                                "INSERT INTO alertlog_" + tableDate + " (alertinfo_key, emma_key, alert_recvtime, alert_send, alert_id, alert_code, fault_type, fault_value, fault_src) " +
                                         " VALUES (?,?,?,?,?,?,?,?,?)";
 
                         KeyHolder keyHolder = new GeneratedKeyHolder();
