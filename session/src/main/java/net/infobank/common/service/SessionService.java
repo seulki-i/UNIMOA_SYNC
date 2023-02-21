@@ -63,7 +63,7 @@ public class SessionService {
         logger.info("START");
 
         //TODO 이 시간이 의미???
-        if (LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm")).equals("00:01")) {
+//        if (LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm")).equals("00:01")) {
             String truncateQuery =
                     "TRUNCATE alert_clntsession";
 
@@ -80,7 +80,7 @@ public class SessionService {
                     "INSERT INTO alert_clntsession (client_code) VALUES " + clientInsertString;
 
             newAuthDbJdbcTemplate.update(insertQuery);
-        }
+//        }
 
         String selectQuery =
                 "SELECT COUNT(*) AS cnt FROM alert_clntsession WHERE cnt_flag = 'P'";
@@ -97,16 +97,16 @@ public class SessionService {
                 String insertQuery2 = "";
                 if (rsData.getSessionType().equals("MTS")) {
                     insertQuery2 =
-                            "INSERT alert_clntsession VALUES ('" + rsData.getClientCode() + "', 1, 0, 0, 0, 'Y') ON DUPLICATE KEY UPDATE cnt_mtsession = cnt_mtsession + 1";
+                            "INSERT alert_clntsession (client_code, cnt_mtsession, cnt_smosession, cnt_mmosession, cnt_reportsession, cnt_flag) VALUES ('" + rsData.getClientCode() + "', 1, 0, 0, 0, 'Y') ON DUPLICATE KEY UPDATE cnt_mtsession = cnt_mtsession + 1";
                 } else if (rsData.getSessionType().equals("SMOR")) {
                     insertQuery2 =
-                            "INSERT alert_clntsession VALUES ('" + rsData.getClientCode() + "', 0, 1, 0, 0, 'Y') ON DUPLICATE KEY UPDATE cnt_smosession = cnt_smosession + 1";
+                            "INSERT alert_clntsession (client_code, cnt_mtsession, cnt_smosession, cnt_mmosession, cnt_reportsession, cnt_flag) VALUES ('" + rsData.getClientCode() + "', 0, 1, 0, 0, 'Y') ON DUPLICATE KEY UPDATE cnt_smosession = cnt_smosession + 1";
                 } else if (rsData.getSessionType().equals("MMOR")) {
                     insertQuery2 =
-                            "INSERT alert_clntsession VALUES ('" + rsData.getClientCode() + "', 0, 0, 1, 0, 'Y') ON DUPLICATE KEY UPDATE cnt_mmosession = cnt_mmosession + 1";
+                            "INSERT alert_clntsession (client_code, cnt_mtsession, cnt_smosession, cnt_mmosession, cnt_reportsession, cnt_flag) VALUES ('" + rsData.getClientCode() + "', 0, 0, 1, 0, 'Y') ON DUPLICATE KEY UPDATE cnt_mmosession = cnt_mmosession + 1";
                 } else if (rsData.getSessionType().equals("MTR")) {
                     insertQuery2 =
-                            "INSERT alert_clntsession VALUES ('" + rsData.getClientCode() + "', 0, 0, 0, 1, 'Y') ON DUPLICATE KEY UPDATE cnt_reportsession = cnt_reportsession + 1";
+                            "INSERT alert_clntsession (client_code, cnt_mtsession, cnt_smosession, cnt_mmosession, cnt_reportsession, cnt_flag) VALUES ('" + rsData.getClientCode() + "', 0, 0, 0, 1, 'Y') ON DUPLICATE KEY UPDATE cnt_reportsession = cnt_reportsession + 1";
                 }
 
                 if (!insertQuery2.equals("")) {
@@ -150,14 +150,14 @@ public class SessionService {
                         ", REPORT : " + clientSession.getReportSessionCount());
 
                 if (alertInsertCheck.equals("Y")) {
-                    String insertQuery =
+                    String insertQuery2 =
                             "INSERT INTO alertlog_" + tableDate + " (alertinfo_key, emma_key, alert_recvtime, alert_send, alert_id, alert_code, fault_type, fault_value, fault_src) " +
                                     " VALUES (?,?,?,?,?,?,?,?,?)";
 
                     KeyHolder keyHolder = new GeneratedKeyHolder();
 
                     PreparedStatementCreator preparedStatementCreator = (connection) -> {
-                        PreparedStatement ps = connection.prepareStatement(insertQuery, new String[]{"alert_seq"});
+                        PreparedStatement ps = connection.prepareStatement(insertQuery2, new String[]{"alert_seq"});
                         ps.setInt(1, alert.getKey());
                         ps.setString(2, "");
                         ps.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
@@ -199,7 +199,7 @@ public class SessionService {
                 } else {
                     logger.info("이전 발송시간 : " + alert.getSendTime());
 
-                    if (!alert.getSendTime().toString().equals("0000-00-00 00:00:00")) {
+                    if (!alert.getSendTime().equals("0000-00-00 00:00:00")) {
                         String updateQuery2 =
                                 "UPDATE alertinfo SET alert_sendtime = '0000-00-00 00:00:00' WHERE alertinfo_key = '" + alert.getKey() + "' AND " +
                                         "alert_id = '" + alert.getId() + "' AND alert_code = '1001' AND fault_type = '20000'";
@@ -282,6 +282,7 @@ public class SessionService {
     }
 
     public List<AlertInfoDTO> alertInfoSessionList() {
+        //TODO alert_sendtime 값 0000-00-00 00:00:00 localDateTime으로 못받음
         String selectQuery =
                 "SELECT A.alertinfo_key AS alertinfo_key, alert_code, allow, A.alert_id AS alert_id, alert_callback, fault_type, alert_repeat, alert_period, alert_sendcnt, alert_sendtime, mt, smo, mmo, report," +
                         "(SELECT client_id FROM clientinfo WHERE client_code = A.alert_id) AS clientId " +
@@ -298,7 +299,7 @@ public class SessionService {
                 rs.getInt("alert_repeat"),
                 rs.getInt("alert_period"),
                 rs.getInt("alert_sendcnt"),
-                rs.getTimestamp("alert_sendtime").toLocalDateTime(),
+                rs.getString("alert_sendtime"),
                 rs.getString("mt"),
                 rs.getString("smo"),
                 rs.getString("mmo"),
@@ -322,7 +323,7 @@ public class SessionService {
         ));
     }
 
-    public String smsSendYn(int repeat, int sendCount, LocalDateTime sendTime, int period, String allow) {
+    public String smsSendYn(int repeat, int sendCount, String sendTime, int period, String allow) {
         String result = "N";
 
         if (allow.equals("Y")) {
@@ -335,9 +336,13 @@ public class SessionService {
                 }
             }
 
+            //TODO alert_sendtime 값 0000-00-00 00:00:00 일때 변환 불가 - 시간간격 계산 불가 - 0000-00-00 00:00:00 일땐 무조건 Y?
             //현재시간 - alert_sendtime의 시간차가 alert_period보다 작으면 보내지 않음
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            LocalDateTime sendDateTime = LocalDateTime.parse(sendTime, formatter);
+
             if (result.equals("Y")) {
-                long between = ChronoUnit.MINUTES.between(sendTime, LocalDateTime.now());
+                long between = ChronoUnit.MINUTES.between(sendDateTime, LocalDateTime.now());
 
                 if (between >= period) {
                     result = "Y";

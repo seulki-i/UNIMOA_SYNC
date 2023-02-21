@@ -249,6 +249,7 @@ public class QueueNaService {
     }
 
     public List<AlertInfoDTO> alertInfoList() {
+        //TODO alert_sendtime 값 0000-00-00 00:00:00 localDateTime으로 못받음
         String selectQuery =
                 "SELECT alertinfo_key, alert_code, allow, alert_id, alert_callback, fault_type, alert_repeat, alert_period, alert_sendcnt, alert_sendtime " +
                         " FROM alertinfo WHERE alert_code = '1002' AND fault_type = '1002' AND allow IN ('Y', 'P') ORDER BY fault_type, alert_id";
@@ -263,7 +264,7 @@ public class QueueNaService {
                 rs.getInt("alert_repeat"),
                 rs.getInt("alert_period"),
                 rs.getInt("alert_sendcnt"),
-                rs.getTimestamp("alert_sendtime").toLocalDateTime()
+                rs.getString("alert_sendtime")
         )));
     }
 
@@ -274,7 +275,7 @@ public class QueueNaService {
         return new ArrayList<>(newAuthDbJdbcTemplate.query(selectQuery, (rs, i) -> rs.getString("alert_recipient")));
     }
 
-    public String smsSendYn(int repeat, int sendCount, LocalDateTime sendTime, int period, String allow) {
+    public String smsSendYn(int repeat, int sendCount, String sendTime, int period, String allow) {
         String result = "N";
 
         if (allow.equals("Y")) {
@@ -287,9 +288,13 @@ public class QueueNaService {
                 }
             }
 
+            //TODO alert_sendtime 값 0000-00-00 00:00:00 일때 변환 불가 - 시간간격 계산 불가 - 0000-00-00 00:00:00 일땐 무조건 Y?
             //현재시간 - alert_sendtime의 시간차가 alert_period보다 작으면 보내지 않음
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            LocalDateTime sendDateTime = LocalDateTime.parse(sendTime, formatter);
+
             if (result.equals("Y")) {
-                long between = ChronoUnit.MINUTES.between(sendTime, LocalDateTime.now());
+                long between = ChronoUnit.MINUTES.between(sendDateTime, LocalDateTime.now());
 
                 if (between >= period) {
                     result = "Y";
