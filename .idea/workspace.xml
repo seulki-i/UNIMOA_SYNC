@@ -5,27 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e883ec2-b17f-45af-97af-124b262027d1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/session/src/main/java/net/infobank/SessionApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/session/src/main/java/net/infobank/common/CommandLineAppStartupRunner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/session/src/main/java/net/infobank/common/config/AlertEmmaDataSourceConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/session/src/main/java/net/infobank/common/config/Grs1DataSourceConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/session/src/main/java/net/infobank/common/config/Grs2DataSourceConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/session/src/main/java/net/infobank/common/config/NewAuthDbDataSourceConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/session/src/main/java/net/infobank/common/config/Unirs1DataSourceConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/session/src/main/java/net/infobank/common/config/Unirs2DataSourceConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/session/src/main/java/net/infobank/common/config/Unirs3DataSourceConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/session/src/main/java/net/infobank/common/config/Unirs4DataSourceConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/session/src/main/java/net/infobank/common/dto/AlertInfoDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/session/src/main/java/net/infobank/common/dto/ClientSessionDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/session/src/main/java/net/infobank/common/dto/MessageDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/session/src/main/java/net/infobank/common/dto/SessionInfoDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/session/src/main/java/net/infobank/common/service/SessionService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/session/src/main/resources/application-local.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/session/src/main/resources/application-release.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/session/src/main/resources/logback.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/queuena/src/main/java/net/infobank/common/service/QueueNaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/queuena/src/main/java/net/infobank/common/service/QueueNaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -300,7 +281,7 @@
       <workItem from="1675919792385" duration="1080000" />
       <workItem from="1675920878270" duration="48340000" />
       <workItem from="1676507941485" duration="1727000" />
-      <workItem from="1676593956426" duration="49813000" />
+      <workItem from="1676593956426" duration="51981000" />
     </task>
     <task id="LOCAL-00001" summary="zeroize">
       <created>1675068463240</created>
@@ -540,7 +521,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676620611928</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="session">
+      <created>1676942381317</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1676942381317</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -558,7 +546,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="zeroize" />
     <MESSAGE value="zeroize yml 수정" />
     <MESSAGE value="zeroize 시간계산 수정" />
     <MESSAGE value="zeroize dto 이름변경" />
@@ -583,7 +570,8 @@
     <MESSAGE value="tsRsDelay 수정" />
     <MESSAGE value="tsInsert 수정" />
     <MESSAGE value="포트수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="포트수정" />
+    <MESSAGE value="session" />
+    <option name="LAST_COMMIT_MESSAGE" value="session" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

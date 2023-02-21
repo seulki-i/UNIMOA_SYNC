@@ -92,28 +92,10 @@ public class QueueNaService {
 
         newAuthDbJdbcTemplate.update(insertQuery);
 
-        //alertinfo 데이터
-        String selectQuery =
-                "SELECT alertinfo_key, alert_code, allow, alert_id, alert_callback, fault_type, alert_repeat, alert_period, alert_sendcnt, alert_sendtime " +
-                        " FROM alertinfo WHERE alert_code = '1002' AND fault_type = '1002' AND allow IN ('Y', 'P') ORDER BY fault_type, alert_id";
-
-        List<AlertInfoDTO> list = new ArrayList<>(newAuthDbJdbcTemplate.query(selectQuery, (rs, i) -> new AlertInfoDTO(
-                rs.getInt("alertinfo_key"),
-                rs.getInt("alert_code"),
-                rs.getString("allow"),
-                rs.getString("alert_id"),
-                rs.getString("alert_callback"),
-                rs.getString("fault_type"),
-                rs.getInt("alert_repeat"),
-                rs.getInt("alert_period"),
-                rs.getInt("alert_sendcnt"),
-                rs.getTimestamp("alert_sendtime").toLocalDateTime()
-        )));
-
-        if (list.size() > 0) {
+        if (alertInfoList().size() > 0) {
             String tableDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMM"));
 
-            for (AlertInfoDTO alert : list) {
+            for (AlertInfoDTO alert : alertInfoList()) {
                 String selectQuery2 =
                         "SELECT que_server, que_name, que_updatetime FROM alert_queuena WHERE que_cnt = 'n/a' AND cnt_flag = 'Y'";
 
@@ -263,8 +245,26 @@ public class QueueNaService {
                 rs.getString("cnt_item"),
                 rs.getTimestamp("updatetime").toLocalDateTime()
         )));
-
         return resultList;
+    }
+
+    public List<AlertInfoDTO> alertInfoList() {
+        String selectQuery =
+                "SELECT alertinfo_key, alert_code, allow, alert_id, alert_callback, fault_type, alert_repeat, alert_period, alert_sendcnt, alert_sendtime " +
+                        " FROM alertinfo WHERE alert_code = '1002' AND fault_type = '1002' AND allow IN ('Y', 'P') ORDER BY fault_type, alert_id";
+
+        return new ArrayList<>(newAuthDbJdbcTemplate.query(selectQuery, (rs, i) -> new AlertInfoDTO(
+                rs.getInt("alertinfo_key"),
+                rs.getInt("alert_code"),
+                rs.getString("allow"),
+                rs.getString("alert_id"),
+                rs.getString("alert_callback"),
+                rs.getString("fault_type"),
+                rs.getInt("alert_repeat"),
+                rs.getInt("alert_period"),
+                rs.getInt("alert_sendcnt"),
+                rs.getTimestamp("alert_sendtime").toLocalDateTime()
+        )));
     }
 
     public List<String> recipientList(int key) {
