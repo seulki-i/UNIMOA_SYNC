@@ -1,0 +1,61 @@
+spring:
+  datasource:
+    newauthdb: # 5.7
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://10.10.11.32:3306/newauthdb?serverTimezone=Asia/Seoul&useSSL=false&zeroDateTimeBehavior=convertToNull
+      username: newgw
+      password: pwnewgw
+    alertemma:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://10.10.11.32:3306/alertemma_db?serverTimezone=Asia/Seoul&useSSL=false&zeroDateTimeBehavior=convertToNull
+      username: newgw
+      password: pwnewgw
+    smrs:
+      driver-class-name: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://211.233.34.13:3306/SMRSDB?serverTimezone=Asia/Seoul&useSSL=false
+      username: newgw
+      password: pwnewgw
+    unirs1:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://10.10.11.180:3306/unirsdb01?serverTimezone=Asia/Seoul&useSSL=false
+      username: newgw
+      password: pwnewgw
+    unirs2:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://10.10.11.180:3306/unirsdb02?serverTimezone=Asia/Seoul&useSSL=false
+      username: newgw
+      password: pwnewgw
+    unirs3:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://10.10.11.12:3306/unirsdb03?serverTimezone=Asia/Seoul&useSSL=false
+      username: newgw
+      password: pwnewgw
+    unirs4:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://10.10.11.12:3306/unirsdb04?serverTimezone=Asia/Seoul&useSSL=false
+      username: newgw
+      password: pwnewgw
+    grs1:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://10.10.11.32:3306/wngrs01?serverTimezone=Asia/Seoul&useSSL=false
+      username: newgw
+      password: pwnewgw
+    grs2:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://10.10.11.32:3306/wngrs02?serverTimezone=Asia/Seoul&useSSL=false
+      username: newgw
+      password: pwnewgw
+    rcs1: # 5.7
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://10.10.11.66:3306/rcsrsdb01?serverTimezone=Asia/Seoul&useSSL=false
+      username: newgw
+      password: pwnewgw
+    rcs2:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://10.10.11.66:3306/rcsrsdb02?serverTimezone=Asia/Seoul&useSSL=false
+      username: newgw
+      password: pwnewgw
+server:
+  port: 19012
+logging:
+  config: classpath:logback.xml
