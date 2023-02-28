@@ -72,8 +72,8 @@ public class MoStatusService {
                                     "alert_sendtime = NOW() " +
                                     "WHERE tscode = '" + mo.getTsCode() + "' AND tsid = '" + mo.getTsId() + "'";
 
-//                    newAuthDbJdbcTemplate.update(updateQuery);
-                    logger.info("있을때 : " + updateQuery);
+                    newAuthDbJdbcTemplate.update(updateQuery);
+//                    logger.info("있을때 : " + updateQuery);
 
                     for (String number : recipientList()) {
                         smsSendAction(number, "0316281500", sendMessage, alertEmmaKey);
@@ -88,8 +88,8 @@ public class MoStatusService {
                                 ") VALUES ( " +
                                 "'" + mo.getMoId() + "', '" + mo.getTsCode() + "', '" + mo.getTsId() + "', '" + mo.getLastUpdateDateTime() + "', SYSDATE(), 1, SYSDATE())";
 
-//                newAuthDbJdbcTemplate.update(insertQuery);
-                logger.info("없을때 : " +insertQuery);
+                newAuthDbJdbcTemplate.update(insertQuery);
+//                logger.info("없을때 : " +insertQuery);
 
                 smsSendAction("01072719753", "0316281500", sendMessage, alertEmmaKey); //김현빈
 
@@ -122,7 +122,6 @@ public class MoStatusService {
                 rs.getString("tsid"),
                 rs.getTimestamp("date_lastupdate").toLocalDateTime()
         )));
-
         return resultList;
     }
 
@@ -142,16 +141,16 @@ public class MoStatusService {
                         ") VALUES ( " +
                         "'" + alertEmmaKey + "', 'S', SYSDATE(), '" + sendMessage + "', '" + callback + "', '0', '1', 'N', '" + recipient + "', '82')";
 
-        logger.info("문자전송");
-        logger.info(insertQuery);
+//        logger.info("문자전송");
+//        logger.info(insertQuery);
 
-//        int update = alertEmmaJdbcTemplate.update(insertQuery);
-//
-//        if (update == 1) {
-//            result = "Y";
-//        }
-//        return result;
+        int update = alertEmmaJdbcTemplate.update(insertQuery);
 
-        return "Y";
+        if (update == 1) {
+            result = "Y";
+        }
+        return result;
+
+//        return "Y";
     }
 }

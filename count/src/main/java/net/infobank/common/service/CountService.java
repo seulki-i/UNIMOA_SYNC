@@ -104,7 +104,8 @@ public class CountService {
                     if (sessionInfoList(rsId, alertId).size() > 0) {
                         for (SessionInfoDTO session : sessionInfoList(rsId, alertId)) {
 
-                            String insertQuery = "INSERT alert_clntcount VALUES ('','" + session.getClientCode() + "', '" + session.getConnectDate() + "', ";
+                            String insertQuery = "INSERT INTO alert_clntcount (client_code, connect_date, smsmt1, smsurl1, mmsmt1, smsmo1, mmsmo1, sessiontime, servername, regdate, cnt_flag) " +
+                                    "VALUES ('','" + session.getClientCode() + "', '" + session.getConnectDate() + "', ";
 
                             if (session.getSessionType().equals("MTS")) {
                                 insertQuery += session.getSmsMt1Count() + ", " + session.getSmsUrl1Count() + ", " + session.getMmsMt1Count() + ", 0, 0, ";
@@ -114,14 +115,15 @@ public class CountService {
                                 insertQuery += "0, 0, 0, 0," + session.getMmsMoo1Count() + ", ";
                             }
 
-                            insertQuery += "'" + session.getSessionTime() + "', '" + session.getRsId() + "', SYSDATE(), 'Y'";
+                            insertQuery += "'" + session.getSessionTime() + "', '" + session.getRsId() + "', SYSDATE(), 'Y')";
 
                             newAuthDbJdbcTemplate.update(insertQuery);
                         }
                     } else {
                         // 해당 RS에 정보가 없는 경우 0으로 입력 sessiontime는 시간체크를 위해 now()로 저장
                         String insertQuery =
-                                "INSERT alert_clntcount VALUES ('', '" + alertId + "', '0000-00-00', 0, 0, 0, 0, 0, now(), '" + rsId + "', NOW(), 'Y')";
+                                "INSERT INTO alert_clntcount (client_code, connect_date, smsmt1, smsurl1, mmsmt1, smsmo1, mmsmo1, sessiontime, servername, regdate, cnt_flag) " +
+                                        "VALUES ('" + alertId + "', '0000-00-00 00:00:00', 0, 0, 0, 0, 0, now(), '" + rsId + "', NOW(), 'Y')";
 
                         newAuthDbJdbcTemplate.update(insertQuery);
                     }
@@ -142,6 +144,7 @@ public class CountService {
 
                     //알림발송 요건 확인
                     String alertInsertCheck = "N";
+
                     StringBuilder tempString = new StringBuilder();
                     if(alert.getSms().equals("Y") && clientCount.getSms() < alert.getEmmaCount()) {
                         alertInsertCheck = "Y";
