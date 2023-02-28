@@ -69,6 +69,12 @@ public class CountService {
     }
 
     public void insert() {
+        logger.info("START");
+
+        LocalDateTime now = LocalDateTime.now();
+        int dayOfWeek = now.getDayOfWeek().getValue();
+        LocalTime nowTime = LocalTime.of(now.getHour(), 0);
+
         String selectQuery =
                 "SELECT COUNT(*) AS cnt FROM alert_clntcount WHERE cnt_flag = 'P'";
 
@@ -206,7 +212,7 @@ public class CountService {
                         logger.info("1차 smsSendCheck : " + smsSendCheck);
 
                         if(smsSendCheck.equals("Y") && alert.getDayCheck().equals("Y")) {
-                            smsSendCheck = smsSendYnCount(alert, LocalDate.now().getDayOfWeek().getValue(), LocalTime.now());
+                            smsSendCheck = smsSendYnCount(alert, dayOfWeek, nowTime);
 
                             logger.info("2차 smsSendCheck : " + smsSendCheck);
                         }
