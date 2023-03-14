@@ -142,9 +142,19 @@ public class CountService {
                 LocalDateTime startDateTime = LocalDateTime.now();
                 LocalDateTime endDateTime = LocalDateTime.now().minusDays(alert.getPeriod());
 
-                //connectDate 시간체크 - 체크 하려는 시간보다 connectDate 가 작아야함
-                if(alert.getConnectDate().isBefore(endDateTime)) {
+                //TODO 시간계산 불가 0000-00-00 00:00:00 일땐 무조건 패스인지
+                Boolean ifCheck = Boolean.FALSE;
+                if(!alert.getConnectDate().equals("0000-00-00 00:00:00")) {
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                    LocalDateTime connectDateTime = LocalDateTime.parse(alert.getConnectDate(), formatter);
 
+                    ifCheck = connectDateTime.isBefore(endDateTime) ? Boolean.TRUE : Boolean.FALSE;
+                } else {
+                    ifCheck = Boolean.TRUE;
+                }
+
+                //connectDate 시간체크 - 체크 하려는 시간보다 connectDate 가 작아야함
+                if(ifCheck) {
                     // 해당 아이디 발송건수
                     ClientCountDTO clientCount = clientCountSum(alert.getId(), startDateTime, endDateTime);
 
@@ -412,7 +422,7 @@ public class CountService {
     }
 
     public List<AlertInfoDTO> alertInfoEmmaList() {
-        //TODO alert_sendtime 값 0000-00-00 00:00:00 localDateTime으로 못받음
+        //TODO alert_sendtime, connect_date 값 0000-00-00 00:00:00 localDateTime으로 못받음
         String selectQuery =
                 "SELECT A.alertinfo_key AS alertinfo_key, alert_code, allow, A.alert_id AS alert_id,alert_callback, fault_type, alert_repeat, alert_period, alert_sendcnt, alert_sendtime, " +
                         "emmaperiod, emmacnt, sms, url, mms, smo, mmo, daycheck, format1, starttime1, endtime1, format2, starttime2, endtime2, format3, starttime3, endtime3, " +
@@ -451,7 +461,7 @@ public class CountService {
                 rs.getString("starttime3"),
                 rs.getString("endtime3"),
                 rs.getString("client_id"),
-                rs.getTimestamp("connect_date").toLocalDateTime()
+                rs.getString("connect_date")
         )));
     }
 

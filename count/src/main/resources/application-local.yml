@@ -11,7 +11,7 @@ spring:
       username: unimoa
       password: pwunimoa
     smrs:
-      driver-class-name: com.mysql.jdbc.Driver
+      driver-class-name: com.mysql.cj.jdbc.Driver
       jdbc-url: jdbc:mysql://172.16.0.140:3306/smrs?serverTimezone=Asia/Seoul&useSSL=false
       username: unimoa
       password: pwunimoa
